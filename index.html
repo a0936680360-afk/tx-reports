@@ -902,14 +902,7 @@
         console.warn("Lucide icons failed to initialize", e);
     }
 
-    // 更新時間
-    function updateTime() {
-        const timeEl = document.getElementById('live-time');
-        const now = new Date();
-        timeEl.textContent = now.toTimeString().split(' ')[0];
-    }
-    setInterval(updateTime, 1000);
-    updateTime();
+    // 更新時間 (由 Python 後台生成時寫死，移除前端時鐘)
 
     // 控制雷達指針 (依據 55% 算出角度，-45deg 到 135deg)
     // 55% 對應 54 度角 (0% -> -45deg, 50% -> 45deg, 100% -> 135deg)
