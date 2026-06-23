@@ -606,9 +606,9 @@
         </div>
         <div class="status-badge">
             <span class="status-dot"></span>
-            <span style="font-weight: 600;">6/23 早盤預測預測中</span>
+            <span style="font-weight: 600;">6/23 週一夜盤預測中</span>
             <span style="color: var(--text-muted);">|</span>
-            <span style="font-family: 'Outfit'; font-size: 13px;" id="live-time">最後更新: 2026-06-23 07:24:55</span>
+            <span style="font-family: 'Outfit'; font-size: 13px;" id="live-time">最後更新: 2026-06-23 20:21:23</span>
         </div>
     </header>
 
@@ -734,7 +734,7 @@
     <section class="glass-panel review-panel fade-in" style="background: rgba(18, 26, 41, 0.45);">
         <div class="section-title">
             <i data-lucide="swords" style="color: var(--color-accent);"></i>
-            <span>6/23 早盤操作策略規劃 (早盤預測)</span>
+            <span>6/23 夜盤操作策略規劃 (夜盤)</span>
         </div>
         
         <div class="strategy-section">
@@ -762,22 +762,25 @@
 
             <!-- 方案 B 空單 -->
             <div class="strategy-card sell-side">
-                <span class="strategy-badge">備用/防守策略 (觀望)</span>
+                <span class="strategy-badge">方案 B (逢高放空)</span>
                 <div class="strategy-levels">
                     <div class="level-row">
                         <span class="level-label">進場區間</span>
-                        <span class="level-price">無特定區間</span>
+                        <span class="level-price">44,400 ~ 44,550</span>
                     </div>
                     <div class="level-row">
                         <span class="level-label">停利目標</span>
-                        <span class="level-price">無</span>
+                        <span class="level-price">44,000 / 43,850</span>
                     </div>
                     <div class="level-row">
                         <span class="level-label" style="color: var(--text-muted);">停損防守</span>
                         <span class="level-price" style="color: var(--text-secondary);">突破 44,700</span>
                     </div>
                 </div>
-                <p class="strategy-desc">若早盤大幅跳空開高，切勿盲目追高，等待現貨開盤確認量能與委買委賣差。</div>
+                <p class="strategy-desc">
+                    <strong>執行邏輯：</strong>若受美股收紅刺激早盤衝高，在 44,400~44,550 點上影線密集壓力區受阻，且追價量能不足時，考量外資 6.5 萬口空單壓頂，此區間極易遭遇外資大筆避險壓制，可輕倉做短空。
+                </p>
+            </div>
         </div>
     </section>
 
@@ -798,7 +801,7 @@
             <tbody>
                 <tr>
                     <td><span class="level-tag tag-r2">壓力二 (R2)</span></td>
-                    <td style="font-weight: 700; font-family: 'Outfit';">0 點</td>
+                    <td style="font-weight: 700; font-family: 'Outfit';">45,504</td>
                     <td style="color: var(--text-secondary);">基於前一交易日 Pivot 計算 [R2 = Pivot + (H-L)]，新高壓力位。</td>
                 </tr>
                 <tr>
@@ -857,14 +860,18 @@
                         <i data-lucide="check-circle-2" style="width: 16px; height: 16px; color: var(--color-down);"></i>
                         <span>量能判斷完全正確</span>
                     </div>
-                    <div class="note-desc">[ 待填寫 ]</div>
+                    <div class="note-desc">
+                        預估夜盤量能萎縮、高位以震盪整理為主之基調完全得到驗證。週五夜盤在缺乏強烈指引下回歸合理整理，終場小幅下跌 166 點，成功過濾不必要的追高交易。
+                    </div>
                 </div>
                 <div class="note-item" style="margin-top: 12px;">
                     <div class="note-title">
                         <i data-lucide="alert-triangle" style="width: 16px; height: 16px; color: var(--color-warning);"></i>
                         <span>最低回踩極限防守區</span>
                     </div>
-                    <div class="note-desc">[ 待填寫 ]</div>
+                    <div class="note-desc">
+                        實際最低回踩 43,712 點，略微跌破預期下緣 43,800 點，但在 S1 43,800 點附近震盪守穩並強彈收在 44,022 點。多單若有依照策略於 43,800~43,950 點低接，至尾盤皆有 100~200 點獲利空間。
+                    </div>
                 </div>
             </div>
         </div>
@@ -884,7 +891,7 @@
 
     // 控制雷達指針 (依據 55% 算出角度，-45deg 到 135deg)
     // 55% 對應 54 度角 (0% -> -45deg, 50% -> 45deg, 100% -> 135deg)
-    const sentimentPct = 50; 
+    const sentimentPct = 55; 
     const angle = -45 + (sentimentPct * 1.8);
     document.getElementById('gauge-fill').style.transform = `rotate(${angle}deg)`;
 
