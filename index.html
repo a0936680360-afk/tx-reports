@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>台指期交易決策與分析儀表板 - 2026-06-23</title>
+    <title>台指期交易決策與分析儀表板 - 2026-06-24 早盤預測</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,49 +23,36 @@
             --text-primary: #f3f4f6;
             --text-secondary: #9ca3af;
             --text-muted: #6b7280;
-            
-            /* 台灣漲紅跌綠習慣 */
-            --color-up: #ef4444; /* 珊瑚紅 */
+            --color-up: #ef4444;
             --color-up-bg: rgba(239, 68, 68, 0.15);
-            --color-down: #10b981; /* 翡翠綠 */
+            --color-down: #10b981;
             --color-down-bg: rgba(16, 185, 129, 0.15);
-            
-            --color-accent: #3b82f6; /* 科技藍 */
+            --color-accent: #3b82f6;
             --color-accent-glow: rgba(59, 130, 246, 0.3);
-            --color-warning: #f59e0b; /* 警示黃 */
+            --color-warning: #f59e0b;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Outfit', 'Noto Sans TC', sans-serif;
             background-color: var(--bg-base);
             color: var(--text-primary);
             min-height: 100vh;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(239, 68, 68, 0.04) 0%, transparent 40%),
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(239, 68, 68, 0.06) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
                 linear-gradient(180deg, #070a10 0%, #0c1220 100%);
             background-attachment: fixed;
             padding: 24px;
             overflow-x: hidden;
         }
-
-        /* 玻璃擬物容器 */
         .glass-panel {
             background: var(--bg-surface);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px border var(--border-glow);
+            border: 1px solid var(--border-glow);
             border-radius: 20px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
-
-        /* 佈局容器 */
         .dashboard-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -73,8 +60,6 @@
             grid-template-columns: 1fr;
             gap: 24px;
         }
-
-        /* Header 區域 */
         header {
             display: flex;
             justify-content: space-between;
@@ -82,22 +67,19 @@
             padding: 24px 32px;
             margin-bottom: 8px;
         }
-
         .header-title-section h1 {
             font-size: 28px;
             font-weight: 800;
-            background: linear-gradient(90deg, #fff 0%, #a5b4fc 50%, #818cf8 100%);
+            background: linear-gradient(90deg, #fff 0%, #fca5a5 40%, #f87171 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
         }
-
         .header-title-section p {
             color: var(--text-secondary);
             font-size: 14px;
             margin-top: 4px;
         }
-
         .status-badge {
             display: flex;
             align-items: center;
@@ -108,29 +90,23 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 14px;
         }
-
         .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--color-warning);
+            width: 8px; height: 8px;
+            background-color: var(--color-up);
             border-radius: 50%;
-            box-shadow: 0 0 8px var(--color-warning);
+            box-shadow: 0 0 8px var(--color-up);
             animation: pulse 2s infinite;
         }
-
         @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(245, 158, 11, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
         }
-
-        /* 頂部快速指標 Grid */
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
         }
-
         .metric-card {
             padding: 20px;
             border-radius: 16px;
@@ -140,459 +116,87 @@
             position: relative;
             overflow: hidden;
         }
-
-        .metric-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
-        }
-
-        .metric-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--color-accent);
-        }
-
+        .metric-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.12); box-shadow: 0 12px 24px rgba(0,0,0,0.2); }
+        .metric-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--color-accent); }
         .metric-card.up::before { background: var(--color-up); }
         .metric-card.down::before { background: var(--color-down); }
         .metric-card.warning::before { background: var(--color-warning); }
-
-        .metric-label {
-            font-size: 13px;
-            color: var(--text-secondary);
-            font-weight: 500;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .metric-value {
-            font-size: 24px;
-            font-weight: 700;
-            margin: 12px 0 4px 0;
-            font-family: 'Outfit', sans-serif;
-        }
-
-        .metric-sub {
-            font-size: 12px;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
+        .metric-label { font-size: 13px; color: var(--text-secondary); font-weight: 500; display: flex; justify-content: space-between; align-items: center; }
+        .metric-value { font-size: 24px; font-weight: 700; margin: 12px 0 4px 0; font-family: 'Outfit', sans-serif; }
+        .metric-sub { font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 4px; }
         .trend-up { color: var(--color-up); }
         .trend-down { color: var(--color-down); }
-
-        /* 主佈局 - 圖表 + 策略 */
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1.6fr 1fr;
-            gap: 24px;
-        }
-
-        @media (max-width: 1024px) {
-            .main-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* 圖表卡片 */
-        .chart-card {
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            min-height: 480px;
-        }
-
-        .chart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chart-tabs {
-            display: flex;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 4px;
-            border-radius: 8px;
-        }
-
-        .chart-tab {
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 13px;
-            cursor: pointer;
-            border: none;
-            background: transparent;
-            color: var(--text-secondary);
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-
-        .chart-tab.active {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-        }
-
-        .chart-container-box {
-            position: relative;
-            border-radius: 12px;
-            background: rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 380px; /* 固定高度，解決 flex-grow 與 absolute 圖片產生的循環依賴高度無限放大問題 */
-        }
-
-        /* Fallback / 走勢圖背景展示 */
-        .chart-img-fallback {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* 改為 contain，確保預設比例可見全圖 */
-            opacity: 0.65;
-            position: absolute;
-            top: 0;
-            left: 0;
-            transition: opacity 0.5s, transform 0.1s ease-out;
-            transform-origin: center;
-            cursor: grab; /* 支援內嵌拖曳 */
-            pointer-events: auto; /* 靜態啟用可點選性，交由 z-index 沉浮防護 */
-        }
-        
-        .chart-img-fallback:active {
-            cursor: grabbing;
-        }
-
-        .chart-overlay-content {
-            position: absolute;
-            z-index: 10;
-            pointer-events: none;
-            text-align: center;
-            padding: 20px;
-            background: rgba(10, 14, 23, 0.75);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            max-width: 80%;
-            backdrop-filter: blur(8px);
-        }
-
-        .chart-overlay-content h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-
-        .chart-overlay-content p {
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-
-        /* 多空力道儀表板與技術指標 */
-        .side-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .sentiment-card {
-            padding: 24px;
-            text-align: center;
-        }
-
-        .gauge-container {
-            width: 200px;
-            height: 100px;
-            margin: 20px auto 10px auto;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .gauge-track {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 16px solid rgba(255, 255, 255, 0.05);
-            position: absolute;
-            top: 0;
-            left: 0;
-            box-sizing: border-box;
-        }
-
-        .gauge-fill {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 16px solid transparent;
-            border-top-color: var(--color-up);
-            border-right-color: var(--color-up);
-            position: absolute;
-            top: 0;
-            left: 0;
-            box-sizing: border-box;
-            transform: rotate(-45deg); /* 動態旋轉: -45deg 到 135deg */
-            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .gauge-value {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            font-size: 28px;
-            font-weight: 800;
-            font-family: 'Outfit', sans-serif;
-        }
-
-        .sentiment-text {
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--color-up);
-            margin-bottom: 4px;
-        }
-
-        /* 技術指標狀態列表 */
-        .indicator-list {
-            margin-top: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .indicator-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 12px;
-            background: rgba(255,255,255,0.02);
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.03);
-        }
-
-        .indicator-name {
-            font-size: 13px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .indicator-status {
-            font-size: 12px;
-            font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 4px;
-        }
-
+        .main-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 24px; }
+        @media (max-width: 1024px) { .main-grid { grid-template-columns: 1fr; } }
+        .chart-card { padding: 24px; display: flex; flex-direction: column; gap: 16px; min-height: 480px; }
+        .chart-header { display: flex; justify-content: space-between; align-items: center; }
+        .chart-tabs { display: flex; gap: 8px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 8px; }
+        .chart-tab { padding: 6px 12px; border-radius: 6px; font-size: 13px; cursor: pointer; border: none; background: transparent; color: var(--text-secondary); font-weight: 500; transition: all 0.2s; }
+        .chart-tab.active { background: rgba(255,255,255,0.1); color: #fff; }
+        .chart-container-box { position: relative; border-radius: 12px; background: rgba(0,0,0,0.2); overflow: hidden; display: flex; justify-content: center; align-items: center; height: 380px; }
+        .side-panel { display: flex; flex-direction: column; gap: 24px; }
+        .sentiment-card { padding: 24px; text-align: center; }
+        .gauge-container { width: 200px; height: 100px; margin: 20px auto 10px auto; position: relative; overflow: hidden; }
+        .gauge-track { width: 200px; height: 200px; border-radius: 50%; border: 16px solid rgba(255,255,255,0.05); position: absolute; top: 0; left: 0; box-sizing: border-box; }
+        .gauge-fill { width: 200px; height: 200px; border-radius: 50%; border: 16px solid transparent; border-top-color: var(--color-up); border-right-color: var(--color-up); position: absolute; top: 0; left: 0; box-sizing: border-box; transform: rotate(-45deg); transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .gauge-value { position: absolute; bottom: 0; left: 0; width: 100%; text-align: center; font-size: 28px; font-weight: 800; font-family: 'Outfit', sans-serif; }
+        .sentiment-text { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+        .indicator-list { margin-top: 16px; display: flex; flex-direction: column; gap: 12px; }
+        .indicator-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid rgba(255,255,255,0.03); }
+        .indicator-name { font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+        .indicator-status { font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
         .status-up { background: var(--color-up-bg); color: var(--color-up); }
         .status-down { background: var(--color-down-bg); color: var(--color-down); }
         .status-neutral { background: rgba(255,255,255,0.08); color: var(--text-secondary); }
-
-        /* 策略與決策模組 */
-        .section-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-left: 4px solid var(--color-accent);
-            padding-left: 10px;
-        }
-
-        .strategy-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .strategy-section {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .strategy-card {
-            padding: 24px;
-            border-radius: 16px;
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s;
-        }
-
-        .strategy-card:hover {
-            transform: translateY(-2px);
-        }
-
-        .strategy-card.buy-side {
-            border-left: 5px solid var(--color-down);
-            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.05);
-        }
-
-        .strategy-card.sell-side {
-            border-left: 5px solid var(--color-up);
-            box-shadow: 0 4px 20px rgba(239, 68, 68, 0.05);
-        }
-
-        .strategy-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        .buy-side .strategy-badge { background: var(--color-down-bg); color: var(--color-down); }
+        .section-title { font-size: 18px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; border-left: 4px solid var(--color-accent); padding-left: 10px; }
+        .strategy-section { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 768px) { .strategy-section { grid-template-columns: 1fr; } }
+        .strategy-card { padding: 24px; border-radius: 16px; background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s; }
+        .strategy-card:hover { transform: translateY(-2px); }
+        .strategy-card.sell-side { border-left: 5px solid var(--color-up); box-shadow: 0 4px 20px rgba(239,68,68,0.08); }
+        .strategy-card.buy-side { border-left: 5px solid var(--color-down); box-shadow: 0 4px 20px rgba(16,185,129,0.06); }
+        .strategy-badge { display: inline-block; padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; margin-bottom: 16px; }
         .sell-side .strategy-badge { background: var(--color-up-bg); color: var(--color-up); }
-
-        .strategy-levels {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin: 16px 0;
-        }
-
-        .level-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
-            padding-bottom: 8px;
-        }
-
-        .level-label {
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-
-        .level-price {
-            font-size: 16px;
-            font-weight: 700;
-            font-family: 'Outfit', sans-serif;
-        }
-
-        .buy-side .level-price { color: var(--color-down); }
+        .buy-side .strategy-badge { background: var(--color-down-bg); color: var(--color-down); }
+        .strategy-levels { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+        .level-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed rgba(255,255,255,0.05); padding-bottom: 8px; }
+        .level-label { font-size: 13px; color: var(--text-secondary); }
+        .level-price { font-size: 16px; font-weight: 700; font-family: 'Outfit', sans-serif; }
         .sell-side .level-price { color: var(--color-up); }
-
-        .strategy-desc {
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* 盤後檢討模組 */
-        .review-panel {
-            padding: 24px;
-        }
-
-        .review-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 24px;
-        }
-
-        @media (max-width: 900px) {
-            .review-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .review-metrics {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .review-notes {
-            background: rgba(0, 0, 0, 0.15);
-            border-radius: 12px;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .note-item {
-            margin-bottom: 16px;
-        }
-
-        .note-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .note-title {
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: #fff;
-        }
-
-        .note-desc {
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* 關鍵價位表格 */
-        .levels-table-card {
-            padding: 24px;
-        }
-
-        .levels-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 12px;
-        }
-
-        .levels-table th, .levels-table td {
-            padding: 12px 16px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .levels-table th {
-            color: var(--text-secondary);
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        .levels-table td {
-            font-size: 14px;
-        }
-
-        .level-tag {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .tag-r2 { background: rgba(239, 68, 68, 0.2); color: #f87171; }
-        .tag-r1 { background: rgba(239, 68, 68, 0.1); color: #fca5a5; }
-        .tag-pivot { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
-        .tag-s1 { background: rgba(16, 185, 129, 0.1); color: #6ee7b7; }
-        .tag-s2 { background: rgba(16, 185, 129, 0.2); color: #34d399; }
-
-        /* 動畫延遲加載 */
-        .fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
+        .buy-side .level-price { color: var(--color-down); }
+        .strategy-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+        .review-panel { padding: 24px; }
+        .review-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 24px; }
+        @media (max-width: 900px) { .review-grid { grid-template-columns: 1fr; } }
+        .review-metrics { display: flex; flex-direction: column; gap: 16px; }
+        .review-notes { background: rgba(0,0,0,0.15); border-radius: 12px; padding: 20px; border: 1px solid rgba(255,255,255,0.03); }
+        .note-item { margin-bottom: 16px; }
+        .note-item:last-child { margin-bottom: 0; }
+        .note-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; color: #fff; }
+        .note-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+        .levels-table-card { padding: 24px; }
+        .levels-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+        .levels-table th, .levels-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .levels-table th { color: var(--text-secondary); font-size: 13px; font-weight: 500; }
+        .levels-table td { font-size: 14px; }
+        .level-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+        .tag-r2 { background: rgba(239,68,68,0.2); color: #f87171; }
+        .tag-r1 { background: rgba(239,68,68,0.1); color: #fca5a5; }
+        .tag-pivot { background: rgba(59,130,246,0.15); color: #60a5fa; }
+        .tag-warn { background: rgba(245,158,11,0.15); color: var(--color-warning); }
+        .tag-s1 { background: rgba(16,185,129,0.1); color: #6ee7b7; }
+        .tag-s2 { background: rgba(16,185,129,0.2); color: #34d399; }
+        .tag-ma { background: rgba(139,92,246,0.15); color: #c4b5fd; }
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        .night-review-card { padding: 24px; background: rgba(10,14,23,0.5); border: 1px solid rgba(239,68,68,0.15); }
+        .kbar-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 16px; }
+        .kbar-stat { background: rgba(0,0,0,0.2); border-radius: 12px; padding: 16px; text-align: center; }
+        .kbar-stat-label { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
+        .kbar-stat-val { font-size: 20px; font-weight: 700; font-family: 'Outfit', sans-serif; }
     </style>
 </head>
 <body>
@@ -602,60 +206,60 @@
     <header class="glass-panel fade-in">
         <div class="header-title-section">
             <h1>台指期交易決策與分析儀表板</h1>
-            <p>Taifex Futures Day & Night Decision Support Dashboard</p>
+            <p>Taifex Futures Day &amp; Night Decision Support Dashboard</p>
         </div>
         <div class="status-badge">
             <span class="status-dot"></span>
-            <span style="font-weight: 600;">6/23 早盤預測預測中</span>
+            <span style="font-weight: 600;">6/24 週二早盤預測中</span>
             <span style="color: var(--text-muted);">|</span>
-            <span style="font-family: 'Outfit'; font-size: 13px;" id="live-time">最後更新: 2026-06-23 20:21:55</span>
+            <span style="font-family: 'Outfit'; font-size: 13px;" id="live-time">最後更新: 2026-06-24 07:10:00</span>
         </div>
     </header>
 
     <!-- 頂部快速指標 -->
     <section class="metrics-grid fade-in">
         <!-- 加權指數 -->
-        <div class="metric-card up">
+        <div class="metric-card down">
             <div class="metric-label">
-                <span>加權指數 (現貨)</span>
-                <i data-lucide="trending-up" class="trend-up" style="width: 16px; height: 16px;"></i>
+                <span>加權指數 (6/23 現貨)</span>
+                <i data-lucide="trending-down" class="trend-down" style="width: 16px; height: 16px;"></i>
             </div>
-            <div class="metric-value">44,169.04</div>
+            <div class="metric-value trend-down">47,100.65</div>
             <div class="metric-sub">
-                <span class="trend-up">+1,019.58 點 (+2.36%)</span>
+                <span class="trend-down">暴跌 -2,632 點（創高反轉長黑）</span>
             </div>
         </div>
         <!-- 台指期日盤 -->
-        <div class="metric-card up">
+        <div class="metric-card down">
             <div class="metric-label">
-                <span>台指期近月 (日盤)</span>
-                <i data-lucide="trending-up" class="trend-up" style="width: 16px; height: 16px;"></i>
+                <span>台指期 6月 (6/23 日盤)</span>
+                <i data-lucide="trending-down" class="trend-down" style="width: 16px; height: 16px;"></i>
             </div>
-            <div class="metric-value">44,188.00</div>
+            <div class="metric-value trend-down">47,437</div>
             <div class="metric-sub">
-                <span class="trend-up">+1,237.00 點 (+2.88%)</span>
+                <span class="trend-down">-2,966 點 震幅 1,836 點巨型長黑</span>
             </div>
         </div>
         <!-- 台指期夜盤 -->
         <div class="metric-card down">
             <div class="metric-label">
-                <span>台指期近月 (夜盤)</span>
+                <span>台指期 (6/23 夜盤完整)</span>
                 <i data-lucide="trending-down" class="trend-down" style="width: 16px; height: 16px;"></i>
             </div>
-            <div class="metric-value">44,022.00</div>
+            <div class="metric-value trend-down">46,207</div>
             <div class="metric-sub">
-                <span class="trend-down">-166.00 點 (-0.38%)</span>
+                <span class="trend-down">夜盤再跌 -1,230 點 (低開至收)</span>
             </div>
         </div>
         <!-- 價差狀態 -->
         <div class="metric-card warning">
             <div class="metric-label">
-                <span>期現貨價差</span>
-                <i data-lucide="activity" class="trend-down" style="width: 16px; height: 16px; color: var(--color-warning);"></i>
+                <span>期現貨逆價差</span>
+                <i data-lucide="activity" style="width: 16px; height: 16px; color: var(--color-warning);"></i>
             </div>
-            <div class="metric-value" style="color: var(--color-warning);">-147.04</div>
+            <div class="metric-value" style="color: var(--color-warning);">-893 點</div>
             <div class="metric-sub">
-                <span>夜盤逆價差再次拉大</span>
+                <span>夜盤 46,207 vs 現貨 47,101，逆價差 893 點</span>
             </div>
         </div>
         <!-- 外資期指部位 -->
@@ -664,38 +268,35 @@
                 <span>外資期貨淨部位</span>
                 <i data-lucide="shield-alert" style="width: 16px; height: 16px; color: var(--color-up);"></i>
             </div>
-            <div class="metric-value" style="color: var(--color-up); font-size: 20px; margin-top: 16px;">-65,039 口</div>
+            <div class="metric-value" style="color: var(--color-up); font-size: 20px; margin-top: 16px;">-76,502 口</div>
             <div class="metric-sub">
-                <span class="trend-up">空單再加碼 1,871 口 (天量)</span>
+                <span class="trend-up">歷史天量！單日加空 6,212 口創新高</span>
             </div>
         </div>
     </section>
 
     <!-- 主區塊：圖表 + 多空力道 -->
     <div class="main-grid">
-        <!-- 左側：圖表 -->
+        <!-- 左側：夜盤走勢圖 -->
         <div class="glass-panel chart-card fade-in">
             <div class="chart-header">
                 <div class="section-title" style="margin-bottom: 0;">
                     <i data-lucide="candlestick-chart" style="color: var(--color-accent);"></i>
-                    <span>台指期技術走勢圖</span>
+                    <span>6/23 夜盤走勢圖 (15:00 ~ 05:00)</span>
                 </div>
                 <div class="chart-tabs">
-                    <button class="chart-tab active" onclick="switchChart('real')">真實行情</button>
-                    <button class="chart-tab" onclick="switchChart('fallback')">技術走勢</button>
+                    <button class="chart-tab active" onclick="switchChart('real')">夜盤折線</button>
+                    <button class="chart-tab" onclick="switchChart('fallback')">日K走勢</button>
                 </div>
             </div>
-            
             <div class="chart-container-box" id="intraday-container" style="position: relative; height: 350px;">
                 <canvas id="intradayChart" style="width: 100%; height: 350px; z-index: 5; position: absolute; top:0; left:0; opacity: 1; transition: opacity 0.3s;"></canvas>
-                <!-- 日 K 線 (技術走勢) 畫布 -->
                 <canvas id="dailyChart" style="width: 100%; height: 350px; z-index: 1; position: absolute; top:0; left:0; opacity: 0; transition: opacity 0.3s;"></canvas>
             </div>
         </div>
 
-        <!-- 右側：多空力道與指標 -->
+        <!-- 右側：多空力道 -->
         <div class="side-panel">
-            <!-- 多空力道 -->
             <div class="glass-panel sentiment-card fade-in">
                 <div class="section-title">
                     <i data-lucide="gauge" style="color: var(--color-accent);"></i>
@@ -704,80 +305,119 @@
                 <div class="gauge-container">
                     <div class="gauge-track"></div>
                     <div class="gauge-fill" id="gauge-fill"></div>
-                    <div class="gauge-value" id="gauge-val">55%</div>
+                    <div class="gauge-value" id="gauge-val" style="color: var(--color-up);">25%</div>
                 </div>
-                <div class="sentiment-text">中性偏多 (逆價差收斂拉抬)</div>
+                <div class="sentiment-text" style="color: var(--color-up);">空方主導 (崩跌延伸)</div>
                 <p style="font-size: 12px; color: var(--text-muted); line-height: 1.4; padding: 0 10px;">
-                    短線指標與美股大漲有利於多頭收斂逆價差，但外資 6.5 萬口空單壓頂，限縮了上檔連續噴出空間。
+                    台積電 ADR 暴跌超 5%、外資歷史天量空單 76,502 口、三大法人現貨合賣 483 億，多空格局全面崩壞。46,000 整數關卡是今日早盤最後防線。
                 </p>
-                
-                <!-- 指標 row -->
                 <div class="indicator-list">
                     <div class="indicator-row">
-                        <span class="indicator-name"><i data-lucide="layers" style="width:14px; color: var(--color-accent);"></i>均線狀態 (5MA)</span>
-                        <span class="indicator-status status-up">短多翻揚</span>
+                        <span class="indicator-name"><i data-lucide="layers" style="width:14px; color: var(--color-accent);"></i>均線排列 (5/10MA)</span>
+                        <span class="indicator-status status-down">死亡交叉</span>
                     </div>
                     <div class="indicator-row">
                         <span class="indicator-name"><i data-lucide="activity" style="width:14px; color: var(--color-warning);"></i>KD 指標</span>
-                        <span class="indicator-status status-up">低檔金叉</span>
+                        <span class="indicator-status status-down">高檔交叉向下</span>
                     </div>
                     <div class="indicator-row">
                         <span class="indicator-name"><i data-lucide="shield" style="width:14px; color: var(--color-up);"></i>外資期指</span>
-                        <span class="indicator-status status-down">歷史天量空</span>
+                        <span class="indicator-status status-up">歷史天量空單</span>
+                    </div>
+                    <div class="indicator-row">
+                        <span class="indicator-name"><i data-lucide="trending-down" style="width:14px; color: var(--color-up);"></i>台積電 ADR</span>
+                        <span class="indicator-status status-up">暴跌 -5%+</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 6/23 早盤決策策略 -->
+    <!-- 6/23 夜盤回顧 -->
+    <section class="glass-panel night-review-card fade-in">
+        <div class="section-title">
+            <i data-lucide="moon" style="color: var(--color-up);"></i>
+            <span>6/23 夜盤完整回顧</span>
+        </div>
+        <div class="kbar-row">
+            <div class="kbar-stat">
+                <div class="kbar-stat-label">夜盤開盤</div>
+                <div class="kbar-stat-val" style="color: var(--color-up);">46,940</div>
+            </div>
+            <div class="kbar-stat">
+                <div class="kbar-stat-label">夜盤最高</div>
+                <div class="kbar-stat-val">47,072</div>
+            </div>
+            <div class="kbar-stat">
+                <div class="kbar-stat-label">夜盤最低</div>
+                <div class="kbar-stat-val" style="color: var(--color-down);">46,022</div>
+            </div>
+            <div class="kbar-stat">
+                <div class="kbar-stat-label">夜盤收盤</div>
+                <div class="kbar-stat-val" style="color: var(--color-up);">46,207</div>
+            </div>
+        </div>
+        <p style="font-size: 13px; color: var(--text-secondary); margin-top: 16px; line-height: 1.7;">
+            夜盤延續日盤崩跌格局，低開 46,940 後短暫反彈至 47,072 即告落敗，隨美股那斯達克期指大跌及台積電 ADR 暴跌超 5%，
+            夜盤快速跌破 S1 支撐，一度探底至 <strong style="color: var(--color-down);">46,022</strong>，測試 46,000 整數心理大關。
+            深夜至清晨在 46,200~46,500 區間盤整整固，最終收於 <strong style="color: var(--color-up);">46,207</strong>，
+            兩日合計自歷史高點 49,240 已下跌 <strong style="color: var(--color-up);">3,033 點（-6.2%）</strong>。
+        </p>
+    </section>
+
+    <!-- 6/24 早盤操作策略 -->
     <section class="glass-panel review-panel fade-in" style="background: rgba(18, 26, 41, 0.45);">
         <div class="section-title">
             <i data-lucide="swords" style="color: var(--color-accent);"></i>
-            <span>6/23 早盤操作策略規劃 (早盤預測)</span>
+            <span>6/24 早盤操作策略規劃 (08:45 開盤)</span>
         </div>
-        
         <div class="strategy-section">
-            <!-- 方案 A 多單 -->
-            <div class="strategy-card buy-side">
-                <span class="strategy-badge">方案 A (拉回低接多)</span>
+            <!-- 方案 A 空單 (主策略) -->
+            <div class="strategy-card sell-side">
+                <span class="strategy-badge">方案 A ⭐主策略 (反彈放空)</span>
                 <div class="strategy-levels">
                     <div class="level-row">
                         <span class="level-label">進場區間</span>
-                        <span class="level-price">43,800 ~ 43,950</span>
+                        <span class="level-price">46,600 ~ 46,850</span>
                     </div>
                     <div class="level-row">
                         <span class="level-label">停利目標</span>
-                        <span class="level-price">44,200 / 44,350</span>
+                        <span class="level-price">46,000 / 45,700 / 45,445</span>
                     </div>
                     <div class="level-row">
                         <span class="level-label" style="color: var(--text-muted);">停損防守</span>
-                        <span class="level-price" style="color: var(--text-secondary);">跌破 43,600</span>
+                        <span class="level-price" style="color: var(--text-secondary);">站回 47,100</span>
                     </div>
                 </div>
                 <p class="strategy-desc">
-                    <strong>執行邏輯：</strong>若早盤指數回踩夜盤盤整區下緣與 43,800 點不破，因夜盤逆價差高達 -147 點，具備向現貨靠攏的收斂引導力，可在 43,800~43,950 點間逢低小倉承接短多，嚴守上週五低點停損。
+                    <strong>執行邏輯：</strong>若早盤受夜盤逆價差收斂因素小幅反彈，在 R1 (46,846) 附近遇壓力時，
+                    外資天量空單 76,502 口構成強大壓制。逢高布局空單，以 46,000 整數關為第一目標，
+                    跌破後以 MA20 (45,445) 為激進目標。
                 </p>
             </div>
 
-            <!-- 方案 B 空單 -->
-            <div class="strategy-card sell-side">
-                <span class="strategy-badge">備用/防守策略 (觀望)</span>
+            <!-- 方案 B 多單 (防禦策略) -->
+            <div class="strategy-card buy-side">
+                <span class="strategy-badge">方案 B (超跌反彈，小倉謹慎)</span>
                 <div class="strategy-levels">
                     <div class="level-row">
-                        <span class="level-label">進場區間</span>
-                        <span class="level-price">無特定區間</span>
+                        <span class="level-label">進場條件</span>
+                        <span class="level-price">45,700 ~ 45,900 止跌確認</span>
                     </div>
                     <div class="level-row">
                         <span class="level-label">停利目標</span>
-                        <span class="level-price">無</span>
+                        <span class="level-price">46,200 / 46,400</span>
                     </div>
                     <div class="level-row">
                         <span class="level-label" style="color: var(--text-muted);">停損防守</span>
-                        <span class="level-price" style="color: var(--text-secondary);">突破 44,700</span>
+                        <span class="level-price" style="color: var(--text-secondary);">跌破 45,400 (S2)</span>
                     </div>
                 </div>
-                <p class="strategy-desc">若早盤大幅跳空開高，切勿盲目追高，等待現貨開盤確認量能與委買委賣差。</div>
+                <p class="strategy-desc">
+                    <strong>執行邏輯：</strong>若早盤出現恐慌殺盤跌至 45,700~45,900 附近，出現量縮止跌 K 棒與盤口買力恢復，
+                    可嘗試超短線逆勢反彈多。此策略屬逆勢操作，倉位不超過正常 50%，快進快出。
+                </p>
+            </div>
         </div>
     </section>
 
@@ -785,7 +425,7 @@
     <section class="glass-panel levels-table-card fade-in">
         <div class="section-title">
             <i data-lucide="key-round" style="color: var(--color-accent);"></i>
-            <span>6/23 關鍵多空位對照</span>
+            <span>6/24 關鍵多空位對照 (早盤)</span>
         </div>
         <table class="levels-table">
             <thead>
@@ -798,228 +438,312 @@
             <tbody>
                 <tr>
                     <td><span class="level-tag tag-r2">壓力二 (R2)</span></td>
-                    <td style="font-weight: 700; font-family: 'Outfit';">0 點</td>
-                    <td style="color: var(--text-secondary);">基於前一交易日 Pivot 計算 [R2 = Pivot + (H-L)]，新高壓力位。</td>
+                    <td style="font-weight: 700; font-family: 'Outfit';">47,484</td>
+                    <td style="color: var(--text-secondary);">Pivot+(H-L)，日盤收盤附近，極強阻力。</td>
                 </tr>
                 <tr>
                     <td><span class="level-tag tag-r1">壓力一 (R1)</span></td>
-                    <td style="font-weight: 700; font-family: 'Outfit';">45,104</td>
-                    <td style="color: var(--text-secondary);">基於 Pivot 計算 [R1 = 2*Pivot - L]，中線壓力位。</td>
+                    <td style="font-weight: 700; font-family: 'Outfit';">46,846</td>
+                    <td style="color: var(--text-secondary);">2×Pivot-Low，夜盤高點附近，早盤反彈上限。</td>
                 </tr>
                 <tr>
                     <td><span class="level-tag tag-pivot">多空分界 (Pivot)</span></td>
-                    <td style="font-weight: 700; font-family: 'Outfit'; color: #60a5fa;">44,408</td>
-                    <td style="color: var(--text-secondary);">基於前一交易日 Pivot 計算 [Pivot = (H+L+C)/3]，支撐壓力計算基準。</td>
+                    <td style="font-weight: 700; font-family: 'Outfit'; color: #60a5fa;">46,434</td>
+                    <td style="color: var(--text-secondary);">基於夜盤 (H+L+C)/3，短線多空基準線。</td>
+                </tr>
+                <tr>
+                    <td><span class="level-tag tag-warn">整數心理關卡 ⚠️</span></td>
+                    <td style="font-weight: 700; font-family: 'Outfit'; color: var(--color-warning);">46,000</td>
+                    <td style="color: var(--text-secondary);">多方最後防線，夜盤最低 46,022 未破。早盤若跌破將加速殺盤。</td>
                 </tr>
                 <tr>
                     <td><span class="level-tag tag-s1">支撐一 (S1)</span></td>
-                    <td style="font-weight: 700; font-family: 'Outfit';">44,008</td>
-                    <td style="color: var(--text-secondary);">基於 Pivot 計算 [S1 = 2*Pivot - H]，下檔支撐位。</td>
+                    <td style="font-weight: 700; font-family: 'Outfit';">45,796</td>
+                    <td style="color: var(--text-secondary);">2×Pivot-High，跌破 46,000 後的次一支撐。</td>
+                </tr>
+                <tr>
+                    <td><span class="level-tag tag-ma">MA20 重要支撐</span></td>
+                    <td style="font-weight: 700; font-family: 'Outfit'; color: #c4b5fd;">45,445</td>
+                    <td style="color: var(--text-secondary);">20日均線，急跌後的自然收斂目標。逢此位置注意止穩信號。</td>
                 </tr>
                 <tr>
                     <td><span class="level-tag tag-s2">支撐二 (S2)</span></td>
-                    <td style="font-weight: 700; font-family: 'Outfit';">43,312</td>
-                    <td style="color: var(--text-secondary);">基於 Pivot 計算 [S2 = Pivot - (H-L)]，下檔防禦線。</td>
+                    <td style="font-weight: 700; font-family: 'Outfit';">45,384</td>
+                    <td style="color: var(--text-secondary);">Pivot-(H-L)，MA20 附近雙重支撐，極端防禦位。</td>
                 </tr>
             </tbody>
         </table>
     </section>
 
-    <!-- 6/12 夜盤檢討 -->
+    <!-- 開盤前自檢 & 盤後檢討 -->
     <section class="glass-panel review-panel fade-in">
         <div class="section-title">
             <i data-lucide="clipboard-check" style="color: var(--color-accent);"></i>
-            <span>6/12 夜盤回顧與檢討</span>
+            <span>開盤前自檢清單 &amp; 盤後檢討</span>
         </div>
         <div class="review-grid">
             <div class="review-metrics">
                 <div class="indicator-row" style="padding: 12px;">
-                    <span style="font-size: 13px;">預估波動範圍</span>
-                    <span style="font-weight: 700; font-family: 'Outfit';">43,800 ~ 44,600</span>
+                    <span style="font-size: 13px;">夜盤收盤參考</span>
+                    <span style="font-weight: 700; font-family: 'Outfit'; color: var(--color-up);">46,207</span>
                 </div>
                 <div class="indicator-row" style="padding: 12px;">
-                    <span style="font-size: 13px;">實際波動範圍</span>
-                    <span style="font-weight: 700; font-family: 'Outfit'; color: var(--color-accent);">43,712 ~ 44,022</span>
+                    <span style="font-size: 13px;">早盤開盤定調</span>
+                    <span class="indicator-status status-up">偏空修正延續</span>
                 </div>
                 <div class="indicator-row" style="padding: 12px;">
-                    <span style="font-size: 13px;">方向符合度</span>
-                    <span class="indicator-status status-up" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa;">完全符合</span>
+                    <span style="font-size: 13px;">46,000 守住</span>
+                    <span class="indicator-status status-neutral">待確認</span>
                 </div>
                 <div class="indicator-row" style="padding: 12px;">
-                    <span style="font-size: 13px;">區間符合度</span>
-                    <span class="indicator-status status-up" style="background: rgba(245, 158, 11, 0.15); color: var(--color-warning);">部分符合</span>
+                    <span style="font-size: 13px;">MA20 目標</span>
+                    <span style="font-weight: 700; font-family: 'Outfit'; color: #c4b5fd;">45,445</span>
                 </div>
             </div>
-            
             <div class="review-notes">
                 <div class="note-item">
                     <div class="note-title">
-                        <i data-lucide="check-circle-2" style="width: 16px; height: 16px; color: var(--color-down);"></i>
-                        <span>量能判斷完全正確</span>
+                        <i data-lucide="alert-triangle" style="width: 16px; height: 16px; color: var(--color-up);"></i>
+                        <span>【高風險】外資 76,502 口天量空單壓頂</span>
                     </div>
-                    <div class="note-desc">**超額正價差之誘多陷阱**：6/22 夜盤收盤價相較於現貨收盤，正價差高達 +1,141.49 點。在現貨開盤前，此種過度誇張的正價差往往是強弩之末的軋空終點，極易誘多。一旦現貨開盤追價無力，價差迅速收斂將帶來毀滅性殺盤。</div>
+                    <div class="note-desc">
+                        外資期貨未平倉淨空單創歷史新高，且現貨同步賣超 385 億，期現貨雙殺格局未解除。
+                        早盤任何反彈至 46,600~46,850 (R1 壓力) 均應視為做空機會，嚴禁無腦追多。
+                    </div>
                 </div>
                 <div class="note-item" style="margin-top: 12px;">
                     <div class="note-title">
-                        <i data-lucide="alert-triangle" style="width: 16px; height: 16px; color: var(--color-warning);"></i>
-                        <span>最低回踩極限防守區</span>
+                        <i data-lucide="shield" style="width: 16px; height: 16px; color: var(--color-warning);"></i>
+                        <span>46,000 整數生死線</span>
                     </div>
-                    <div class="note-desc">**超額正價差之誘多陷阱**：6/22 夜盤收盤價相較於現貨收盤，正價差高達 +1,141.49 點。在現貨開盤前，此種過度誇張的正價差往往是強弩之末的軋空終點，極易誘多。一旦現貨開盤追價無力，價差迅速收斂將帶來毀滅性殺盤。</div>
+                    <div class="note-desc">
+                        夜盤最低探至 46,022，守住 46,000 整數關卡。若早盤現貨開盤後跌破 46,000，
+                        將引發市場恐慌性賣壓，下一支撐直接看 MA20 (45,445)，跌幅將擴大至約 760 點。
+                        務必在盤口確認後再行動，切勿預設方向盲目進場。
+                    </div>
+                </div>
+                <div class="note-item" style="margin-top: 12px;">
+                    <div class="note-title">
+                        <i data-lucide="check-circle-2" style="width: 16px; height: 16px; color: var(--color-down);"></i>
+                        <span>盤後實際走勢</span>
+                    </div>
+                    <div class="note-desc">[ 待填寫 ]</div>
                 </div>
             </div>
         </div>
     </section>
 </div>
 
-
 <script>
-    // 初始化 Lucide 圖標
-    try {
-        lucide.createIcons();
-    } catch(e) {
-        console.warn("Lucide icons failed to initialize", e);
-    }
+    try { lucide.createIcons(); } catch(e) { console.warn('Lucide icons failed', e); }
 
-    // 更新時間 (由 Python 後台生成時寫死，移除前端時鐘)
-
-    // 控制雷達指針 (依據 55% 算出角度，-45deg 到 135deg)
-    // 55% 對應 54 度角 (0% -> -45deg, 50% -> 45deg, 100% -> 135deg)
-    const sentimentPct = 50; 
+    const sentimentPct = 25;
     const angle = -45 + (sentimentPct * 1.8);
     document.getElementById('gauge-fill').style.transform = `rotate(${angle}deg)`;
 
-    // Python 注入的即時資料
+    // 夜盤 1分K 折線圖資料
     const intradayLabels = ["15:00", "15:01", "15:02", "15:03", "15:04", "15:05", "15:06", "15:07", "15:08", "15:09", "15:10", "15:11", "15:12", "15:13", "15:14", "15:15", "15:16", "15:17", "15:18", "15:19", "15:20", "15:21", "15:22", "15:23", "15:24", "15:25", "15:26", "15:27", "15:28", "15:29", "15:30", "15:31", "15:32", "15:33", "15:34", "15:35", "15:36", "15:37", "15:38", "15:39", "15:40", "15:41", "15:42", "15:43", "15:44", "15:45", "15:46", "15:47", "15:48", "15:49", "15:50", "15:51", "15:52", "15:53", "15:54", "15:55", "15:56", "15:57", "15:58", "15:59", "16:00", "16:01", "16:02", "16:03", "16:04", "16:05", "16:06", "16:07", "16:08", "16:09", "16:10", "16:11", "16:12", "16:13", "16:14", "16:15", "16:16", "16:17", "16:18", "16:19", "16:20", "16:21", "16:22", "16:23", "16:24", "16:25", "16:26", "16:27", "16:28", "16:29", "16:30", "16:31", "16:32", "16:33", "16:34", "16:35", "16:36", "16:37", "16:38", "16:39", "16:40", "16:41", "16:42", "16:43", "16:44", "16:45", "16:46", "16:47", "16:48", "16:49", "16:50", "16:51", "16:52", "16:53", "16:54", "16:55", "16:56", "16:57", "16:58", "16:59", "17:00", "17:01", "17:02", "17:03", "17:04", "17:05", "17:06", "17:07", "17:08", "17:09", "17:10", "17:11", "17:12", "17:13", "17:14", "17:15", "17:16", "17:17", "17:18", "17:19", "17:20", "17:21", "17:22", "17:23", "17:24", "17:25", "17:26", "17:27", "17:28", "17:29", "17:30", "17:31", "17:32", "17:33", "17:34", "17:35", "17:36", "17:37", "17:38", "17:39", "17:40", "17:41", "17:42", "17:43", "17:44", "17:45", "17:46", "17:47", "17:48", "17:49", "17:50", "17:51", "17:52", "17:53", "17:54", "17:55", "17:56", "17:57", "17:58", "17:59", "18:00", "18:01", "18:02", "18:03", "18:04", "18:05", "18:06", "18:07", "18:08", "18:09", "18:10", "18:11", "18:12", "18:13", "18:14", "18:15", "18:16", "18:17", "18:18", "18:19", "18:20", "18:21", "18:22", "18:23", "18:24", "18:25", "18:26", "18:27", "18:28", "18:29", "18:30", "18:31", "18:32", "18:33", "18:34", "18:35", "18:36", "18:37", "18:38", "18:39", "18:40", "18:41", "18:42", "18:43", "18:44", "18:45", "18:46", "18:47", "18:48", "18:49", "18:50", "18:51", "18:52", "18:53", "18:54", "18:55", "18:56", "18:57", "18:58", "18:59", "19:00", "19:01", "19:02", "19:03", "19:04", "19:05", "19:06", "19:07", "19:08", "19:09", "19:10", "19:11", "19:12", "19:13", "19:14", "19:15", "19:16", "19:17", "19:18", "19:19", "19:20", "19:21", "19:22", "19:23", "19:24", "19:25", "19:26", "19:27", "19:28", "19:29", "19:30", "19:31", "19:32", "19:33", "19:34", "19:35", "19:36", "19:37", "19:38", "19:39", "19:40", "19:41", "19:42", "19:43", "19:44", "19:45", "19:46", "19:47", "19:48", "19:49", "19:50", "19:51", "19:52", "19:53", "19:54", "19:55", "19:56", "19:57", "19:58", "19:59", "20:00", "20:01", "20:02", "20:03", "20:04", "20:05", "20:06", "20:07", "20:08", "20:09", "20:10", "20:11", "20:12", "20:13", "20:14", "20:15", "20:16", "20:17", "20:18", "20:19", "20:20", "20:21", "20:22", "20:23", "20:24", "20:25", "20:26", "20:27", "20:28", "20:29", "20:30", "20:31", "20:32", "20:33", "20:34", "20:35", "20:36", "20:37", "20:38", "20:39", "20:40", "20:41", "20:42", "20:43", "20:44", "20:45", "20:46", "20:47", "20:48", "20:49", "20:50", "20:51", "20:52", "20:53", "20:54", "20:55", "20:56", "20:57", "20:58", "20:59", "21:00", "21:01", "21:02", "21:03", "21:04", "21:05", "21:06", "21:07", "21:08", "21:09", "21:10", "21:11", "21:12", "21:13", "21:14", "21:15", "21:16", "21:17", "21:18", "21:19", "21:20", "21:21", "21:22", "21:23", "21:24", "21:25", "21:26", "21:27", "21:28", "21:29", "21:30", "21:31", "21:32", "21:33", "21:34", "21:35", "21:36", "21:37", "21:38", "21:39", "21:40", "21:41", "21:42", "21:43", "21:44", "21:45", "21:46", "21:47", "21:48", "21:49", "21:50", "21:51", "21:52", "21:53", "21:54", "21:55", "21:56", "21:57", "21:58", "21:59", "22:00", "22:01", "22:02", "22:03", "22:04", "22:05", "22:06", "22:07", "22:08", "22:09", "22:10", "22:11", "22:12", "22:13", "22:14", "22:15", "22:16", "22:17", "22:18", "22:19", "22:20", "22:21", "22:22", "22:23", "22:24", "22:25", "22:26", "22:27", "22:28", "22:29", "22:30", "22:31", "22:32", "22:33", "22:34", "22:35", "22:36", "22:37", "22:38", "22:39", "22:40", "22:41", "22:42", "22:43", "22:44", "22:45", "22:46", "22:47", "22:48", "22:49", "22:50", "22:51", "22:52", "22:53", "22:54", "22:55", "22:56", "22:57", "22:58", "22:59", "23:00", "23:01", "23:02", "23:03", "23:04", "23:05", "23:06", "23:07", "23:08", "23:09", "23:10", "23:11", "23:12", "23:13", "23:14", "23:15", "23:16", "23:17", "23:18", "23:19", "23:20", "23:21", "23:22", "23:23", "23:24", "23:25", "23:26", "23:27", "23:28", "23:29", "23:30", "23:31", "23:32", "23:33", "23:34", "23:35", "23:36", "23:37", "23:38", "23:39", "23:40", "23:41", "23:42", "23:43", "23:44", "23:45", "23:46", "23:47", "23:48", "23:49", "23:50", "23:51", "23:52", "23:53", "23:54", "23:55", "23:56", "23:57", "23:58", "23:59", "00:00", "00:01", "00:02", "00:03", "00:04", "00:05", "00:06", "00:07", "00:08", "00:09", "00:10", "00:11", "00:12", "00:13", "00:14", "00:15", "00:16", "00:17", "00:18", "00:19", "00:20", "00:21", "00:22", "00:23", "00:24", "00:25", "00:26", "00:27", "00:28", "00:29", "00:30", "00:31", "00:32", "00:33", "00:34", "00:35", "00:36", "00:37", "00:38", "00:39", "00:40", "00:41", "00:42", "00:43", "00:44", "00:45", "00:46", "00:47", "00:48", "00:49", "00:50", "00:51", "00:52", "00:53", "00:54", "00:55", "00:56", "00:57", "00:58", "00:59", "01:00", "01:01", "01:02", "01:03", "01:04", "01:05", "01:06", "01:07", "01:08", "01:09", "01:10", "01:11", "01:12", "01:13", "01:14", "01:15", "01:16", "01:17", "01:18", "01:19", "01:20", "01:21", "01:22", "01:23", "01:24", "01:25", "01:26", "01:27", "01:28", "01:29", "01:30", "01:31", "01:32", "01:33", "01:34", "01:35", "01:36", "01:37", "01:38", "01:39", "01:40", "01:41", "01:42", "01:43", "01:44", "01:45", "01:46", "01:47", "01:48", "01:49", "01:50", "01:51", "01:52", "01:53", "01:54", "01:55", "01:56", "01:57", "01:58", "01:59", "02:00", "02:01", "02:02", "02:03", "02:04", "02:05", "02:06", "02:07", "02:08", "02:09", "02:10", "02:11", "02:12", "02:13", "02:14", "02:15", "02:16", "02:17", "02:18", "02:19", "02:20", "02:21", "02:22", "02:23", "02:24", "02:25", "02:26", "02:27", "02:28", "02:29", "02:30", "02:31", "02:32", "02:33", "02:34", "02:35", "02:36", "02:37", "02:38", "02:39", "02:40", "02:41", "02:42", "02:43", "02:44", "02:45", "02:46", "02:47", "02:48", "02:49", "02:50", "02:51", "02:52", "02:53", "02:54", "02:55", "02:56", "02:57", "02:58", "02:59", "03:00", "03:01", "03:02", "03:03", "03:04", "03:05", "03:06", "03:07", "03:08", "03:09", "03:10", "03:11", "03:12", "03:13", "03:14", "03:15", "03:16", "03:17", "03:18", "03:19", "03:20", "03:21", "03:22", "03:23", "03:24", "03:25", "03:26", "03:27", "03:28", "03:29", "03:30", "03:31", "03:32", "03:33", "03:34", "03:35", "03:36", "03:37", "03:38", "03:39", "03:40", "03:41", "03:42", "03:43", "03:44", "03:45", "03:46", "03:47", "03:48", "03:49", "03:50", "03:51", "03:52", "03:53", "03:54", "03:55", "03:56", "03:57", "03:58", "03:59", "04:00", "04:01", "04:02", "04:03", "04:04", "04:05", "04:06", "04:07", "04:08", "04:09", "04:10", "04:11", "04:12", "04:13", "04:14", "04:15", "04:16", "04:17", "04:18", "04:19", "04:20", "04:21", "04:22", "04:23", "04:24", "04:25", "04:26", "04:27", "04:28", "04:29", "04:30", "04:31", "04:32", "04:33", "04:34", "04:35", "04:36", "04:37", "04:38", "04:39", "04:40", "04:41", "04:42", "04:43", "04:44", "04:45", "04:46", "04:47", "04:48", "04:49", "04:50", "04:51", "04:52", "04:53", "04:54", "04:55", "04:56", "04:57", "04:58", "04:59"];
-    const intradayPrices = [46777.0, 46775.0, 46810.0, 46809.0, 46827.0, 46839.0, 46860.0, 46852.0, 46845.0, 46870.0, 46852.0, 46852.0, 46817.0, 46796.0, 46803.0, 46816.0, 46798.0, 46771.0, 46803.0, 46790.0, 46777.0, 46775.0, 46784.0, 46815.0, 46817.0, 46821.0, 46847.0, 46841.0, 46845.0, 46837.0, 46801.0, 46796.0, 46797.0, 46797.0, 46817.0, 46810.0, 46829.0, 46838.0, 46825.0, 46835.0, 46826.0, 46828.0, 46821.0, 46809.0, 46820.0, 46815.0, 46813.0, 46812.0, 46802.0, 46806.0, 46815.0, 46803.0, 46825.0, 46826.0, 46825.0, 46820.0, 46826.0, 46827.0, 46867.0, 46885.0, 46925.0, 46930.0, 46933.0, 46892.0, 46900.0, 46928.0, 46911.0, 46974.0, 46976.0, 46985.0, 46970.0, 46964.0, 46953.0, 46928.0, 46919.0, 46913.0, 46920.0, 46914.0, 46904.0, 46901.0, 46889.0, 46872.0, 46874.0, 46868.0, 46871.0, 46872.0, 46880.0, 46886.0, 46884.0, 46868.0, 46888.0, 46875.0, 46875.0, 46888.0, 46877.0, 46865.0, 46888.0, 46895.0, 46898.0, 46910.0, 46905.0, 46920.0, 46922.0, 46913.0, 46905.0, 46893.0, 46897.0, 46879.0, 46890.0, 46903.0, 46896.0, 46885.0, 46846.0, 46852.0, 46863.0, 46850.0, 46801.0, 46804.0, 46812.0, 46813.0, 46785.0, 46787.0, 46823.0, 46830.0, 46843.0, 46851.0, 46841.0, 46869.0, 46862.0, 46849.0, 46827.0, 46809.0, 46803.0, 46836.0, 46817.0, 46849.0, 46830.0, 46841.0, 46834.0, 46829.0, 46828.0, 46843.0, 46855.0, 46835.0, 46827.0, 46847.0, 46839.0, 46839.0, 46840.0, 46832.0, 46827.0, 46818.0, 46832.0, 46824.0, 46815.0, 46825.0, 46827.0, 46857.0, 46867.0, 46881.0, 46874.0, 46878.0, 46875.0, 46885.0, 46878.0, 46880.0, 46880.0, 46879.0, 46884.0, 46891.0, 46909.0, 46916.0, 46911.0, 46908.0, 46909.0, 46915.0, 46934.0, 46930.0, 46931.0, 46921.0, 46912.0, 46913.0, 46907.0, 46915.0, 46917.0, 46924.0, 46911.0, 46903.0, 46894.0, 46895.0, 46890.0, 46887.0, 46890.0, 46906.0, 46914.0, 46917.0, 46920.0, 46909.0, 46900.0, 46907.0, 46910.0, 46905.0, 46900.0, 46898.0, 46900.0, 46909.0, 46904.0, 46894.0, 46892.0, 46906.0, 46907.0, 46908.0, 46901.0, 46867.0, 46876.0, 46876.0, 46856.0, 46846.0, 46855.0, 46856.0, 46865.0, 46850.0, 46841.0, 46830.0, 46815.0, 46817.0, 46803.0, 46814.0, 46816.0, 46822.0, 46826.0, 46830.0, 46823.0, 46818.0, 46815.0, 46823.0, 46830.0, 46828.0, 46832.0, 46832.0, 46834.0, 46857.0, 46850.0, 46862.0, 46848.0, 46823.0, 46809.0, 46823.0, 46827.0, 46793.0, 46787.0, 46785.0, 46799.0, 46785.0, 46813.0, 46806.0, 46801.0, 46790.0, 46789.0, 46788.0, 46800.0, 46787.0, 46787.0, 46791.0, 46804.0, 46827.0, 46825.0, 46820.0, 46811.0, 46819.0, 46819.0, 46839.0, 46825.0, 46811.0, 46810.0, 46800.0, 46800.0, 46789.0, 46763.0, 46752.0, 46743.0, 46755.0, 46754.0, 46784.0, 46791.0, 46791.0, 46778.0, 46768.0, 46771.0, 46767.0, 46777.0, 46794.0, 46810.0, 46810.0, 46808.0, 46809.0, 46799.0, 46815.0, 46823.0, 46831.0, 46821.0, 46817.0, 46806.0, 46837.0, 46833.0, 46823.0, 46831.0, 46832.0, 46830.0, 46828.0, 46853.0, 46852.0, 46860.0, 46859.0, 46866.0, 46861.0, 46847.0, 46842.0, 46851.0, 46862.0, 46877.0, 46885.0, 46875.0, 46865.0, 46886.0, 46891.0, 46880.0, 46870.0, 46871.0, 46882.0, 46891.0, 46900.0, 46891.0, 46885.0, 46886.0, 46904.0, 46914.0, 46913.0, 46903.0, 46895.0, 46899.0, 46900.0, 46925.0, 46909.0, 46899.0, 46906.0, 46910.0, 46907.0, 46894.0, 46906.0, 46896.0, 46893.0, 46881.0, 46892.0, 46898.0, 46902.0, 46912.0, 46971.0, 46952.0, 46945.0, 46943.0, 46914.0, 46926.0, 46909.0, 46905.0, 46911.0, 46914.0, 46906.0, 46923.0, 46920.0, 46938.0, 46947.0, 46940.0, 46936.0, 46931.0, 46936.0, 46945.0, 46939.0, 46954.0, 46945.0, 46946.0, 46942.0, 46950.0, 46950.0, 46926.0, 46944.0, 46950.0, 46976.0, 46994.0, 46983.0, 47024.0, 47084.0, 47112.0, 47116.0, 47064.0, 47090.0, 47065.0, 47086.0, 47092.0, 47114.0, 47123.0, 47129.0, 47149.0, 47088.0, 47065.0, 47095.0, 47118.0, 47102.0, 47087.0, 47142.0, 47131.0, 47130.0, 47129.0, 47132.0, 47091.0, 47102.0, 47104.0, 47069.0, 47067.0, 47115.0, 47130.0, 47121.0, 47145.0, 47175.0, 47163.0, 47136.0, 47171.0, 47177.0, 47170.0, 47173.0, 47151.0, 47150.0, 47139.0, 47125.0, 47146.0, 47135.0, 47168.0, 47180.0, 47193.0, 47195.0, 47195.0, 47207.0, 47216.0, 47260.0, 47274.0, 47271.0, 47240.0, 47235.0, 47215.0, 47220.0, 47194.0, 47215.0, 47184.0, 47212.0, 47230.0, 47234.0, 47260.0, 47279.0, 47268.0, 47253.0, 47245.0, 47231.0, 47244.0, 47248.0, 47250.0, 47266.0, 47282.0, 47284.0, 47290.0, 47286.0, 47268.0, 47253.0, 47259.0, 47255.0, 47265.0, 47252.0, 47260.0, 47270.0, 47290.0, 47259.0, 47253.0, 47238.0, 47232.0, 47240.0, 47261.0, 47243.0, 47251.0, 47255.0, 47274.0, 47265.0, 47268.0, 47270.0, 47257.0, 47260.0, 47234.0, 47252.0, 47251.0, 47238.0, 47232.0, 47225.0, 47247.0, 47239.0, 47219.0, 47230.0, 47213.0, 47223.0, 47227.0, 47246.0, 47214.0, 47196.0, 47223.0, 47223.0, 47200.0, 47192.0, 47203.0, 47173.0, 47168.0, 47182.0, 47142.0, 47185.0, 47192.0, 47212.0, 47210.0, 47206.0, 47212.0, 47204.0, 47196.0, 47219.0, 47209.0, 47239.0, 47239.0, 47235.0, 47250.0, 47254.0, 47236.0, 47248.0, 47255.0, 47272.0, 47275.0, 47274.0, 47319.0, 47315.0, 47331.0, 47340.0, 47323.0, 47339.0, 47328.0, 47321.0, 47302.0, 47308.0, 47299.0, 47325.0, 47329.0, 47331.0, 47333.0, 47321.0, 47318.0, 47340.0, 47318.0, 47323.0, 47340.0, 47366.0, 47356.0, 47363.0, 47367.0, 47358.0, 47367.0, 47358.0, 47355.0, 47350.0, 47360.0, 47361.0, 47361.0, 47361.0, 47375.0, 47363.0, 47370.0, 47386.0, 47376.0, 47377.0, 47365.0, 47369.0, 47380.0, 47386.0, 47375.0, 47390.0, 47371.0, 47372.0, 47374.0, 47370.0, 47350.0, 47351.0, 47357.0, 47346.0, 47332.0, 47325.0, 47340.0, 47354.0, 47354.0, 47364.0, 47336.0, 47339.0, 47356.0, 47351.0, 47367.0, 47409.0, 47420.0, 47416.0, 47436.0, 47437.0, 47438.0, 47442.0, 47440.0, 47450.0, 47449.0, 47444.0, 47473.0, 47470.0, 47468.0, 47472.0, 47471.0, 47467.0, 47465.0, 47481.0, 47467.0, 47462.0, 47467.0, 47465.0, 47471.0, 47480.0, 47488.0, 47505.0, 47507.0, 47501.0, 47509.0, 47522.0, 47532.0, 47525.0, 47534.0, 47516.0, 47513.0, 47533.0, 47537.0, 47527.0, 47541.0, 47542.0, 47523.0, 47532.0, 47543.0, 47533.0, 47535.0, 47532.0, 47545.0, 47546.0, 47530.0, 47522.0, 47524.0, 47531.0, 47514.0, 47522.0, 47524.0, 47528.0, 47543.0, 47507.0, 47521.0, 47527.0, 47520.0, 47533.0, 47547.0, 47539.0, 47550.0, 47550.0, 47552.0, 47544.0, 47540.0, 47543.0, 47540.0, 47545.0, 47556.0, 47558.0, 47544.0, 47552.0, 47563.0, 47549.0, 47545.0, 47551.0, 47549.0, 47544.0, 47528.0, 47525.0, 47521.0, 47506.0, 47497.0, 47511.0, 47510.0, 47517.0, 47509.0, 47510.0, 47500.0, 47506.0, 47511.0, 47524.0, 47514.0, 47517.0, 47512.0, 47518.0, 47513.0, 47516.0, 47525.0, 47530.0, 47525.0, 47518.0, 47542.0, 47540.0, 47533.0, 47533.0, 47539.0, 47526.0, 47539.0, 47529.0, 47522.0, 47509.0, 47450.0, 47461.0, 47479.0, 47476.0, 47481.0, 47490.0, 47490.0, 47489.0, 47475.0, 47461.0, 47458.0, 47470.0, 47470.0, 47463.0, 47480.0, 47503.0, 47496.0, 47538.0, 47523.0, 47522.0, 47532.0, 47510.0, 47495.0, 47486.0, 47497.0, 47494.0, 47494.0, 47490.0, 47478.0, 47490.0, 47499.0, 47516.0, 47515.0, 47525.0, 47518.0, 47521.0, 47530.0, 47545.0, 47552.0, 47561.0, 47548.0, 47567.0, 47579.0, 47593.0, 47589.0, 47600.0, 47605.0, 47605.0, 47588.0, 47609.0, 47610.0, 47607.0, 47595.0, 47595.0, 47572.0, 47581.0, 47571.0, 47544.0, 47525.0, 47538.0, 47535.0, 47547.0, 47530.0, 47525.0, 47533.0, 47545.0, 47553.0, 47548.0, 47538.0, 47548.0, 47554.0, 47560.0, 47568.0, 47563.0, 47572.0, 47569.0, 47568.0, 47580.0, 47593.0, 47587.0, 47582.0, 47590.0, 47595.0, 47587.0, 47588.0, 47585.0, 47580.0, 47582.0, 47579.0, 47579.0, 47583.0, 47587.0, 47584.0, 47587.0, 47587.0, 47588.0, 47590.0, 47592.0, 47596.0, 47588.0, 47583.0, 47568.0, 47564.0, 47547.0, 47549.0, 47548.0, 47548.0, 47550.0, 47552.0, 47550.0, 47549.0, 47541.0, 47542.0, 47543.0, 47545.0, 47539.0, 47558.0, 47565.0];
-    const intradayVwaps = [46771.67, 46774.35220408163, 46781.03220657277, 46784.978847736624, 46789.356313868615, 46793.267281767956, 46802.91904275093, 46805.655938596494, 46808.032199509405, 46810.748441860465, 46812.46570155902, 46814.14089171975, 46814.82808395397, 46814.12995586382, 46813.55191631293, 46813.62233546885, 46813.364954853285, 46812.13956002174, 46811.584889357226, 46811.33402691512, 46810.61761088711, 46809.51944363105, 46809.120187319895, 46809.077105513315, 46809.22462748728, 46809.67786642762, 46810.38777437692, 46810.81003021149, 46811.55337558091, 46811.8576881271, 46811.886548492264, 46811.6951384986, 46811.52982539683, 46811.40987411487, 46811.411319717205, 46811.4184801247, 46811.556463555724, 46811.7537351703, 46811.863442001515, 46812.3076215022, 46812.59060123144, 46812.62113118901, 46812.73435214767, 46812.73678156876, 46812.750497373025, 46812.77123387939, 46812.77728347826, 46812.73438856356, 46812.64109059829, 46812.60945559714, 46812.60955842391, 46812.58194341529, 46812.6222973878, 46812.707925531904, 46812.763956334755, 46812.78246701846, 46812.85240971765, 46812.892953503586, 46814.52302076777, 46816.94368484848, 46824.40664623954, 46826.47691846194, 46828.667855807726, 46830.14692851531, 46830.71349779277, 46832.2837490436, 46833.00671890798, 46840.15449737969, 46843.2898232558, 46846.48070211315, 46848.3747011417, 46849.164693196966, 46850.225966109145, 46851.06050119851, 46851.95888147988, 46852.68276808509, 46852.83451071958, 46853.30276654023, 46853.92528443424, 46854.478800741796, 46854.7339045864, 46855.15469236915, 46855.2398389662, 46855.35102467916, 46855.4172754079, 46855.53961688819, 46855.62612915775, 46855.73139453805, 46855.80784044813, 46855.941224137925, 46856.12196917807, 46856.19869721643, 46856.32787354158, 46856.47988768251, 46856.60601862197, 46856.66804327723, 46856.725622808626, 46856.97052949797, 46857.127787917496, 46857.9028561151, 46858.02448869751, 46858.68896080864, 46859.08214449338, 46859.69456764295, 46859.943478411646, 46860.036162227596, 46860.18072830578, 46860.25447323266, 46860.38713627048, 46860.506633747646, 46860.57859619305, 46860.664269739056, 46860.66437925876, 46860.61832647687, 46860.60621913327, 46860.554767158836, 46859.88868072192, 46858.26113184078, 46857.88882716048, 46857.678878648214, 46856.01932853715, 46855.44415192506, 46854.889936913125, 46854.72174267811, 46854.61484010995, 46854.58302017289, 46854.53303412674, 46854.65100297491, 46854.70206770097, 46854.70710348705, 46854.60447677671, 46854.441740281436, 46854.01151519336, 46853.95784040793, 46853.77582214304, 46853.7547738144, 46853.71130079083, 46853.67155582755, 46853.60606832971, 46853.58688160389, 46853.54034072471, 46853.49318641325, 46853.49368548386, 46853.46440809759, 46853.42347925033, 46853.405475554355, 46853.397862768645, 46853.38982121413, 46853.37802878847, 46853.349209580825, 46853.25023973508, 46853.18496497024, 46853.16230190173, 46853.11894674398, 46853.06857443726, 46853.02123948473, 46852.954208939555, 46852.954346576036, 46853.009687622, 46853.17547123462, 46853.27086777389, 46853.29717463989, 46853.34669960218, 46853.453792002016, 46853.58158376794, 46853.64346871428, 46853.68194247337, 46853.72632511066, 46853.75045500503, 46853.9817573169, 46854.352831858385, 46855.12863457274, 46855.20102926707, 46855.2894856371, 46855.559281963586, 46855.81791220815, 46856.367966449405, 46856.49861703407, 46856.63680413608, 46856.78959093088, 46857.05711692342, 46857.16635117413, 46857.24396691261, 46857.2960535077, 46857.39083926873, 46857.516932827835, 46857.65510693605, 46857.7789061763, 46857.87953920298, 46857.94824612855, 46858.042925830574, 46858.10097945363, 46858.14560387034, 46858.2707498256, 46858.38066945119, 46858.54530487097, 46858.59341849708, 46858.670065797036, 46858.7585209077, 46858.82125517714, 46858.89181410842, 46858.94740073442, 46858.95712597519, 46859.014926689546, 46859.2339227966, 46859.40915267692, 46859.44957955573, 46859.48329370468, 46859.50320244424, 46859.55425567986, 46859.71656338026, 46859.77278559367, 46859.822507026394, 46860.01903950424, 46860.06009489129, 46860.08772602134, 46860.08973681334, 46860.073504469125, 46860.06585827797, 46860.05881943687, 46860.06218990773, 46860.04977585271, 46860.000566709816, 46859.731469077655, 46859.5607404645, 46859.245254362744, 46858.295197839834, 46858.16482344411, 46858.01689196159, 46857.88111236761, 46857.810987894925, 46857.74552348784, 46857.67809090907, 46857.59328612184, 46857.50874529738, 46857.448629719824, 46857.41876901234, 46857.347538679314, 46857.325974537715, 46857.274210685464, 46857.15524987479, 46857.14092544471, 46857.129950114715, 46857.12758761447, 46857.11710212594, 46857.04279671089, 46856.80230511479, 46856.70463829367, 46856.66090784177, 46856.01549160437, 46855.546739570265, 46855.051714504385, 46854.85635522927, 46854.68898820842, 46854.571141257926, 46854.53531519573, 46854.48093465907, 46854.40218176658, 46854.25443616115, 46853.99137619851, 46853.90972120527, 46853.67121234797, 46853.64066479661, 46853.50934496592, 46853.29672306403, 46853.15801240508, 46853.094857749835, 46853.01084093209, 46852.98383248962, 46852.94844979769, 46852.91110753969, 46852.863207806455, 46852.834020316615, 46852.715265894345, 46852.63674467307, 46852.57449577154, 46852.53095584224, 46852.45278584389, 46850.85466405272, 46850.30005669735, 46848.95451906258, 46847.531578765906, 46847.22171418753, 46847.049252912926, 46846.897840054655, 46846.72643270866, 46846.610859620756, 46846.47280488837, 46846.364548305064, 46846.22119448437, 46845.960773965075, 46845.725861808394, 46845.57229109157, 46845.505689957405, 46845.46755753833, 46845.43384019328, 46845.3787883831, 46845.33717586434, 46845.2510023194, 46845.18715582699, 46845.06401543766, 46845.030262467175, 46844.99778415142, 46844.95611342648, 46844.9211747454, 46844.884078861774, 46844.86564479453, 46844.84431016302, 46844.81406161558, 46844.80328862313, 46844.800513294234, 46844.82777430722, 46844.84860329389, 46844.907615066084, 46844.9597951568, 46845.05165731446, 46845.05992747338, 46845.06192680046, 46845.07118104667, 46845.08532056815, 46845.21327603718, 46845.333089918255, 46845.45526687354, 46845.48008446993, 46845.562023965984, 46845.66561357501, 46845.732327174745, 46845.76377777777, 46845.79271142177, 46845.969193277306, 46846.15181914974, 46846.501304380654, 46846.57704547167, 46846.606751563544, 46846.65604635411, 46846.79860423231, 46847.153002164654, 46847.20456220166, 46847.2830490802, 46847.36274072421, 46847.412605853504, 46847.46689522112, 46847.86894053415, 46848.03691639681, 46848.16370190895, 46848.28440943727, 46848.31050534641, 46848.32857226533, 46848.50873029771, 46848.66032455245, 46848.71964314266, 46848.7987391178, 46848.94388294796, 46849.08050759593, 46849.11928422414, 46849.2556275565, 46849.29775331659, 46851.75962402855, 46852.10096085408, 46852.47542358745, 46852.8126462646, 46853.19446701554, 46853.46037593467, 46853.60746560808, 46853.73983886383, 46854.02735144311, 46854.23089807795, 46854.27213904104, 46854.33671936223, 46854.62808652357, 46854.7825924931, 46855.17750885634, 46855.28424432575, 46855.35538384577, 46855.50270935958, 46855.83619546476, 46855.93320749715, 46856.14604254754, 46856.392388797336, 46856.56049858577, 46856.72492022845, 46856.89710550456, 46856.97999541702, 46857.12709654223, 46857.28896034435, 46857.88380699479, 46858.3366241299, 46858.76344546444, 46862.32640987189, 46863.02941852516, 46868.77588911505, 46871.38456859385, 46875.04090777007, 46878.51714433047, 46881.44738185307, 46884.1993517848, 46886.51078413028, 46889.33458823527, 46891.190598065536, 46893.1627243197, 46894.78532614439, 46896.253240886625, 46899.06070397672, 46900.54432945055, 46902.41121839313, 46904.258719644546, 46905.367251820215, 46906.07564088451, 46906.72557760381, 46908.773887983385, 46909.77167699113, 46910.88386206894, 46912.75671499222, 46914.21177873035, 46915.36241981808, 46916.23276028015, 46916.61310951541, 46917.836705205016, 46918.375710994056, 46919.50652976355, 46921.214323961256, 46922.93188094252, 46924.21396247087, 46928.28606650808, 46929.11177585974, 46929.90153404026, 46931.10523182622, 46932.304182948865, 46933.40473663417, 46934.54463564874, 46935.42762010442, 46935.83704786308, 46936.55569363284, 46937.30745332239, 46937.78070635807, 46938.353019644834, 46939.619465648844, 46940.419773471025, 46941.534546454546, 46943.410407357616, 46944.285457627106, 46945.11522297775, 46945.998528543496, 46949.304601751704, 46951.363923274905, 46952.90053055249, 46954.44030697673, 46955.94083645141, 46957.64470477712, 46958.71552932276, 46961.71817162858, 46962.27500156961, 46962.734633821565, 46963.333364847436, 46964.24782341262, 46964.93061235584, 46966.1005081403, 46967.94852590713, 46968.762442979256, 46969.321588491846, 46969.7707998472, 46970.436078640545, 46970.84830404016, 46971.405995671805, 46972.15061607784, 46972.73936439556, 46973.44664505183, 46974.47244654867, 46975.21131391512, 46975.787136496285, 46976.78018011634, 46977.9236058085, 46978.411501186405, 46978.841526986, 46979.34850232798, 46980.015398680276, 46980.5770974506, 46981.122687718, 46982.06293740848, 46982.39902054694, 46983.82315718649, 46984.445386764375, 46985.29132087069, 46986.06541597577, 46986.68595447025, 46986.9488269742, 46987.22738120872, 46987.46263759905, 46988.274106900244, 46988.88985124143, 46989.43834769296, 46989.65688545001, 46989.87735541889, 46990.208024708874, 46991.121737469475, 46991.703352272714, 46991.82271649792, 46992.29265183254, 46992.5739309326, 46993.3652927983, 46993.84296887021, 46993.98214360621, 46994.28994553831, 46994.702578756594, 46994.93104264575, 46995.20028443268, 46995.361144584575, 46995.91469213699, 46996.286279118045, 46997.35237655806, 46998.05672364083, 46998.31649388046, 46998.776041937446, 46999.440173171955, 46999.89170170065, 47001.01617956256, 47001.7102581709, 47002.074139123986, 47003.02163139269, 47003.60022421074, 47003.99267917009, 47004.679981473484, 47005.03774232964, 47005.20188093978, 47005.55826629769, 47005.94819810635, 47006.10673356762, 47006.4386763741, 47006.59185744712, 47007.23268185083, 47007.62923370519, 47007.96643799469, 47008.48067284249, 47009.368102409615, 47009.56355413887, 47009.784292457385, 47010.295731707294, 47011.01051346393, 47011.41446757249, 47011.56428296251, 47015.96418867206, 47016.64808033317, 47017.43669698493, 47018.25972313775, 47019.189565598375, 47020.21195526716, 47020.66889359579, 47021.628979135596, 47022.05160905284, 47022.74047906227, 47023.02621960637, 47023.59145178696, 47024.189719332775, 47024.45042555806, 47024.989684459295, 47025.34680421851, 47025.41848280511, 47025.72894240483, 47026.094630722626, 47026.3449472912, 47026.809375457626, 47028.408261423996, 47028.639197766825, 47029.08409187319, 47029.82549357518, 47030.71067512964, 47030.8718755274, 47031.04960810889, 47031.16690545014, 47031.46517643871, 47031.737193483394, 47032.050066064054, 47032.1580286383, 47032.83471210303, 47033.24915951046, 47034.238807577545, 47034.357294226385, 47034.75961156949, 47035.04176195718, 47035.24618697759, 47035.454116825196, 47035.78295637453, 47036.02574620885, 47036.211525137165, 47036.577155343526, 47037.08911186058, 47037.27913483144, 47037.62380121103, 47037.802375047955, 47038.0302767288, 47038.82314410993, 47039.23468112618, 47039.42095576571, 47039.64137892573, 47040.17520465265, 47040.79934190906, 47041.12656455333, 47041.368866063596, 47041.46918234589, 47041.85048977331, 47042.231063873114, 47042.534026453475, 47042.731603335065, 47042.92199430943, 47043.34006321037, 47045.21376625997, 47046.208361811056, 47046.4743378654, 47046.915953372176, 47047.354870081435, 47047.81367584289, 47048.193011189636, 47048.65415218384, 47048.93909023392, 47049.21407044785, 47049.494167665, 47050.16429844794, 47050.54715281531, 47050.78361475245, 47050.891301171236, 47051.21326307415, 47051.987551037746, 47052.33602328742, 47052.6955120584, 47052.99273187563, 47053.09742152591, 47053.237040199, 47053.41199412245, 47053.49503813988, 47053.71063505956, 47054.47829382414, 47056.359726042756, 47056.63804028274, 47057.252571084384, 47057.907247475436, 47058.32941982, 47059.15723503973, 47059.54622968639, 47059.76953053603, 47060.34541391879, 47060.839726762264, 47061.34560627514, 47061.77768253438, 47061.945997337825, 47062.631004070536, 47063.06926243566, 47063.441441050425, 47063.62335267621, 47063.70281834505, 47064.09533775015, 47064.405349940665, 47064.649788518785, 47064.75491151173, 47065.033340771944, 47065.29252333616, 47065.71288748279, 47066.10339078089, 47066.256353144825, 47066.9200727103, 47067.00694812497, 47067.46011565128, 47067.71295187487, 47068.03545081293, 47068.73222841681, 47068.879409064815, 47069.16709468682, 47069.27825958781, 47069.32866726711, 47070.16985859851, 47070.32352244252, 47070.38829144085, 47070.79537031997, 47070.93875499822, 47071.01627593896, 47071.08049437102, 47071.436751806956, 47071.62806149332, 47072.011573262396, 47072.38825903025, 47072.811028503296, 47073.17100389862, 47073.24855773915, 47073.56631228695, 47073.838899343, 47074.05704140092, 47074.23817494191, 47074.44429551222, 47074.53322102533, 47075.35618060794, 47075.562384915815, 47076.12221699127, 47076.40260054843, 47077.246973705376, 47077.56784465653, 47077.77836504447, 47077.88338754184, 47078.16213339043, 47078.278080783726, 47078.471564907944, 47078.551994489455, 47078.79534835845, 47078.94875324049, 47079.14814072766, 47079.252983735256, 47079.299350815796, 47079.52047349595, 47079.60219518051, 47079.637209414, 47080.05369251684, 47080.14963245287, 47080.34025149858, 47080.492472035774, 47080.89479923363, 47081.028944456244, 47081.29465996701, 47081.36659542794, 47081.43930526762, 47081.65331261288, 47081.7498486136, 47081.85728658292, 47082.1974866012, 47082.38043149629, 47083.93540044374, 47084.69197258466, 47084.85582092696, 47085.030953961206, 47085.2810923352, 47085.4405559502, 47085.568036245015, 47085.95252056232, 47086.352530582226, 47086.69256399494, 47087.19479949709, 47087.26454564498, 47087.50682910231, 47087.76397531121, 47088.12665238293, 47088.41325700408, 47089.40939547845, 47089.94074893992, 47090.17792262491, 47090.45647257514, 47090.60477844155, 47090.815103455425, 47091.123937428645, 47091.22712640696, 47091.31053726079, 47091.50997667486, 47091.63511283259, 47091.69754759991, 47091.98068054152, 47092.08385833699, 47092.22990531625, 47092.479326749046, 47092.59926671663, 47092.73261853698, 47092.965058623, 47093.08709291818, 47093.24375435517, 47093.669321369634, 47094.31270012101, 47094.80132278806, 47095.17868189761, 47095.57254769547, 47096.54376640016, 47097.49966803069, 47097.926688301726, 47098.6667437232, 47099.08935678776, 47099.48544910331, 47100.210094368405, 47100.95470156455, 47101.45975438328, 47101.71667926249, 47102.98634144489, 47103.31828307085, 47103.721041093115, 47104.018222272694, 47104.472410984454, 47105.1220997633, 47106.63213663847, 47107.17403127192, 47107.24970387072, 47107.337488916164, 47107.572476405054, 47107.75090260748, 47107.82532112387, 47108.07540683137, 47108.23029170625, 47108.28541401115, 47108.36093008147, 47108.382801099455, 47108.47159638254, 47108.5612873414, 47108.66424597328, 47108.72100823971, 47108.81333017126, 47108.997464191256, 47109.05493475387, 47109.287995461236, 47109.49114368333, 47109.51494890075, 47109.633109549446, 47109.71677413729, 47109.75297050177, 47109.87258966824, 47109.99173340306, 47110.13393154096, 47110.169094416655, 47110.216002937006, 47110.30946149061, 47110.40261612719, 47110.4963306883, 47110.64940045756, 47110.75576138031, 47110.99079069652, 47110.99079069652, 47111.0852657077, 47111.16865517414, 47111.20445915403, 47111.515395288814, 47111.8010629853, 47112.235611182725, 47112.566309285, 47112.61112577699, 47113.81493233567, 47113.90069305221, 47114.02887668461, 47114.02887668461, 47114.22100981941, 47114.47751380808, 47114.62722874046, 47114.734351158215, 47114.98807925328, 47115.3238145979, 47115.58696982367, 47115.63956204201, 47116.03697351612, 47116.133568393394, 47116.537795828226];
-    
-    const dailyLabels = ["10/13", "10/14", "10/15", "10/16", "10/17", "10/20", "10/21", "10/22", "10/23", "10/27", "10/28", "10/29", "10/30", "10/31", "11/03", "11/04", "11/05", "11/06", "11/07", "11/10", "11/11", "11/12", "11/13", "11/14", "11/17", "11/18", "11/19", "11/20", "11/21", "11/24", "11/25", "11/26", "11/27", "11/28", "12/01", "12/02", "12/03", "12/04", "12/05", "12/08", "12/09", "12/10", "12/11", "12/12", "12/15", "12/16", "12/17", "12/18", "12/19", "12/22", "12/23", "12/24", "12/26", "12/29", "12/30", "12/31", "01/02", "01/05", "01/06", "01/07", "01/08", "01/09", "01/12", "01/13", "01/14", "01/15", "01/16", "01/19", "01/20", "01/21", "01/22", "01/23", "01/26", "01/27", "01/28", "01/29", "01/30", "02/02", "02/03", "02/04", "02/05", "02/06", "02/09", "02/10", "02/11", "02/23", "02/24", "02/25", "02/26", "03/02", "03/03", "03/04", "03/05", "03/06", "03/09", "03/10", "03/11", "03/12", "03/13", "03/16", "03/17", "03/18", "03/19", "03/20", "03/23", "03/24", "03/25", "03/26", "03/27", "03/30", "03/31", "04/01", "04/02", "04/07", "04/08", "04/09", "04/10", "04/13", "04/14", "04/15", "04/16", "04/17", "04/20", "04/21", "04/22", "04/23", "04/24", "04/27", "04/28", "04/29", "04/30", "05/04", "05/05", "05/06", "05/07", "05/08", "05/11", "05/12", "05/13", "05/14", "05/15", "05/18", "05/19", "05/20", "05/21", "05/22", "05/25", "05/26", "05/27", "05/28", "05/29", "06/01", "06/02", "06/03", "06/04", "06/05", "06/08", "06/09", "06/10", "06/11", "06/12", "06/15", "06/16", "06/17", "06/18"];
-    const dailyKbars = [{"x": 1760284800000, "o": 27342.0, "h": 27396.0, "l": 26390.0, "c": 26915.0}, {"x": 1760371200000, "o": 26920.0, "h": 27450.0, "l": 26716.0, "c": 26725.0}, {"x": 1760457600000, "o": 26740.0, "h": 27191.0, "l": 26500.0, "c": 27156.0}, {"x": 1760544000000, "o": 27329.0, "h": 27877.0, "l": 27230.0, "c": 27818.0}, {"x": 1760630400000, "o": 27782.0, "h": 27814.0, "l": 27244.0, "c": 27328.0}, {"x": 1760889600000, "o": 27265.0, "h": 27824.0, "l": 27037.0, "c": 27780.0}, {"x": 1760976000000, "o": 27818.0, "h": 28036.0, "l": 27703.0, "c": 27831.0}, {"x": 1761062400000, "o": 27826.0, "h": 27948.0, "l": 27526.0, "c": 27708.0}, {"x": 1761148800000, "o": 27732.0, "h": 27738.0, "l": 27311.0, "c": 27556.0}, {"x": 1761494400000, "o": 27620.0, "h": 28291.0, "l": 27496.0, "c": 28219.0}, {"x": 1761580800000, "o": 28236.0, "h": 28320.0, "l": 27984.0, "c": 28005.0}, {"x": 1761667200000, "o": 27988.0, "h": 28446.0, "l": 27953.0, "c": 28414.0}, {"x": 1761753600000, "o": 28443.0, "h": 28552.0, "l": 28181.0, "c": 28399.0}, {"x": 1761840000000, "o": 28380.0, "h": 28588.0, "l": 28200.0, "c": 28430.0}, {"x": 1762099200000, "o": 28430.0, "h": 28583.0, "l": 28150.0, "c": 28341.0}, {"x": 1762185600000, "o": 28322.0, "h": 28594.0, "l": 28113.0, "c": 28119.0}, {"x": 1762272000000, "o": 28100.0, "h": 28229.0, "l": 27415.0, "c": 27808.0}, {"x": 1762358400000, "o": 27860.0, "h": 28157.0, "l": 27746.0, "c": 28034.0}, {"x": 1762444800000, "o": 28010.0, "h": 28136.0, "l": 27596.0, "c": 27721.0}, {"x": 1762704000000, "o": 27759.0, "h": 28039.0, "l": 27155.0, "c": 28016.0}, {"x": 1762790400000, "o": 28001.0, "h": 28180.0, "l": 27762.0, "c": 27780.0}, {"x": 1762876800000, "o": 27815.0, "h": 28078.0, "l": 27705.0, "c": 28059.0}, {"x": 1762963200000, "o": 28080.0, "h": 28176.0, "l": 27802.0, "c": 27978.0}, {"x": 1763049600000, "o": 28013.0, "h": 28072.0, "l": 27366.0, "c": 27404.0}, {"x": 1763308800000, "o": 27389.0, "h": 27690.0, "l": 26954.0, "c": 27481.0}, {"x": 1763395200000, "o": 27454.0, "h": 27577.0, "l": 26772.0, "c": 26814.0}, {"x": 1763481600000, "o": 26747.0, "h": 27021.0, "l": 26537.0, "c": 26615.0}, {"x": 1763568000000, "o": 26685.0, "h": 27492.0, "l": 26658.0, "c": 27484.0}, {"x": 1763654400000, "o": 27508.0, "h": 27540.0, "l": 26397.0, "c": 26476.0}, {"x": 1763913600000, "o": 26489.0, "h": 26802.0, "l": 26247.0, "c": 26614.0}, {"x": 1764000000000, "o": 26615.0, "h": 27105.0, "l": 26454.0, "c": 26933.0}, {"x": 1764086400000, "o": 26918.0, "h": 27384.0, "l": 26650.0, "c": 27339.0}, {"x": 1764172800000, "o": 27350.0, "h": 27649.0, "l": 27222.0, "c": 27579.0}, {"x": 1764259200000, "o": 27576.0, "h": 27854.0, "l": 27524.0, "c": 27737.0}, {"x": 1764518400000, "o": 27743.0, "h": 27864.0, "l": 27401.0, "c": 27406.0}, {"x": 1764604800000, "o": 27452.0, "h": 27789.0, "l": 27407.0, "c": 27559.0}, {"x": 1764691200000, "o": 27568.0, "h": 27888.0, "l": 27567.0, "c": 27760.0}, {"x": 1764777600000, "o": 27748.0, "h": 27880.0, "l": 27610.0, "c": 27798.0}, {"x": 1764864000000, "o": 27829.0, "h": 28019.0, "l": 27702.0, "c": 28010.0}, {"x": 1765123200000, "o": 28027.0, "h": 28298.0, "l": 27972.0, "c": 28284.0}, {"x": 1765209600000, "o": 28285.0, "h": 28360.0, "l": 28169.0, "c": 28217.0}, {"x": 1765296000000, "o": 28215.0, "h": 28434.0, "l": 28133.0, "c": 28400.0}, {"x": 1765382400000, "o": 28418.0, "h": 28700.0, "l": 28059.0, "c": 28101.0}, {"x": 1765468800000, "o": 28112.0, "h": 28347.0, "l": 28095.0, "c": 28290.0}, {"x": 1765728000000, "o": 28280.0, "h": 28335.0, "l": 27712.0, "c": 27910.0}, {"x": 1765814400000, "o": 27890.0, "h": 28030.0, "l": 27411.0, "c": 27635.0}, {"x": 1765900800000, "o": 27622.0, "h": 27797.0, "l": 27474.0, "c": 27483.0}, {"x": 1765987200000, "o": 27753.0, "h": 27961.0, "l": 27348.0, "c": 27598.0}, {"x": 1766073600000, "o": 27590.0, "h": 27983.0, "l": 27579.0, "c": 27897.0}, {"x": 1766332800000, "o": 27898.0, "h": 28368.0, "l": 27870.0, "c": 28341.0}, {"x": 1766419200000, "o": 28346.0, "h": 28455.0, "l": 28289.0, "c": 28415.0}, {"x": 1766505600000, "o": 28411.0, "h": 28577.0, "l": 28336.0, "c": 28467.0}, {"x": 1766678400000, "o": 28469.0, "h": 28714.0, "l": 28457.0, "c": 28677.0}, {"x": 1766937600000, "o": 28665.0, "h": 28998.0, "l": 28616.0, "c": 28940.0}, {"x": 1767024000000, "o": 28940.0, "h": 28955.0, "l": 28705.0, "c": 28875.0}, {"x": 1767110400000, "o": 28867.0, "h": 29053.0, "l": 28782.0, "c": 29014.0}, {"x": 1767283200000, "o": 29015.0, "h": 29500.0, "l": 28961.0, "c": 29479.0}, {"x": 1767542400000, "o": 29505.0, "h": 30487.0, "l": 29463.0, "c": 30309.0}, {"x": 1767628800000, "o": 30358.0, "h": 30672.0, "l": 30183.0, "c": 30627.0}, {"x": 1767715200000, "o": 30628.0, "h": 30676.0, "l": 30448.0, "c": 30516.0}, {"x": 1767801600000, "o": 30508.0, "h": 30663.0, "l": 30266.0, "c": 30458.0}, {"x": 1767888000000, "o": 30433.0, "h": 30583.0, "l": 30005.0, "c": 30453.0}, {"x": 1768147200000, "o": 30469.0, "h": 30840.0, "l": 30417.0, "c": 30700.0}, {"x": 1768233600000, "o": 30730.0, "h": 31252.0, "l": 30626.0, "c": 30870.0}, {"x": 1768320000000, "o": 30870.0, "h": 31162.0, "l": 30855.0, "c": 30980.0}, {"x": 1768406400000, "o": 30940.0, "h": 31057.0, "l": 30657.0, "c": 31050.0}, {"x": 1768492800000, "o": 31182.0, "h": 31543.0, "l": 31119.0, "c": 31476.0}, {"x": 1768752000000, "o": 31491.0, "h": 31774.0, "l": 31208.0, "c": 31672.0}, {"x": 1768838400000, "o": 31641.0, "h": 31742.0, "l": 31328.0, "c": 31668.0}, {"x": 1768924800000, "o": 31560.0, "h": 31650.0, "l": 31186.0, "c": 31245.0}, {"x": 1769011200000, "o": 31506.0, "h": 32057.0, "l": 31448.0, "c": 31863.0}, {"x": 1769097600000, "o": 31845.0, "h": 32166.0, "l": 31841.0, "c": 32159.0}, {"x": 1769356800000, "o": 32184.0, "h": 32265.0, "l": 32058.0, "c": 32150.0}, {"x": 1769443200000, "o": 32134.0, "h": 32532.0, "l": 32033.0, "c": 32505.0}, {"x": 1769529600000, "o": 32526.0, "h": 32938.0, "l": 32513.0, "c": 32925.0}, {"x": 1769616000000, "o": 32985.0, "h": 33153.0, "l": 32587.0, "c": 32774.0}, {"x": 1769702400000, "o": 32758.0, "h": 32798.0, "l": 31994.0, "c": 32252.0}, {"x": 1769961600000, "o": 32116.0, "h": 32306.0, "l": 31392.0, "c": 31616.0}, {"x": 1770048000000, "o": 31580.0, "h": 32446.0, "l": 31578.0, "c": 32284.0}, {"x": 1770134400000, "o": 32300.0, "h": 32499.0, "l": 31741.0, "c": 32416.0}, {"x": 1770220800000, "o": 32477.0, "h": 32612.0, "l": 31766.0, "c": 31902.0}, {"x": 1770307200000, "o": 31951.0, "h": 32052.0, "l": 31220.0, "c": 31789.0}, {"x": 1770566400000, "o": 31847.0, "h": 32836.0, "l": 31753.0, "c": 32650.0}, {"x": 1770652800000, "o": 32623.0, "h": 33309.0, "l": 32456.0, "c": 33303.0}, {"x": 1770739200000, "o": 33261.0, "h": 33843.0, "l": 33182.0, "c": 33686.0}, {"x": 1771776000000, "o": 33600.0, "h": 34369.0, "l": 33600.0, "c": 33840.0}, {"x": 1771862400000, "o": 33957.0, "h": 34956.0, "l": 33821.0, "c": 34837.0}, {"x": 1771948800000, "o": 34844.0, "h": 35777.0, "l": 34817.0, "c": 35489.0}, {"x": 1772035200000, "o": 35478.0, "h": 35755.0, "l": 35348.0, "c": 35611.0}, {"x": 1772380800000, "o": 35638.0, "h": 35879.0, "l": 34722.0, "c": 35238.0}, {"x": 1772467200000, "o": 35099.0, "h": 35366.0, "l": 34314.0, "c": 34331.0}, {"x": 1772553600000, "o": 34319.0, "h": 34444.0, "l": 32679.0, "c": 32871.0}, {"x": 1772640000000, "o": 32899.0, "h": 34294.0, "l": 32804.0, "c": 33666.0}, {"x": 1772726400000, "o": 33695.0, "h": 33888.0, "l": 32820.0, "c": 33703.0}, {"x": 1772985600000, "o": 33709.0, "h": 33792.0, "l": 31124.0, "c": 31902.0}, {"x": 1773072000000, "o": 31905.0, "h": 33530.0, "l": 31756.0, "c": 32717.0}, {"x": 1773158400000, "o": 32771.0, "h": 34185.0, "l": 32711.0, "c": 34004.0}, {"x": 1773244800000, "o": 33942.0, "h": 34006.0, "l": 33326.0, "c": 33512.0}, {"x": 1773331200000, "o": 33630.0, "h": 33840.0, "l": 32442.0, "c": 33304.0}, {"x": 1773590400000, "o": 33013.0, "h": 33723.0, "l": 32680.0, "c": 33264.0}, {"x": 1773676800000, "o": 33370.0, "h": 34017.0, "l": 33100.0, "c": 33801.0}, {"x": 1773763200000, "o": 33614.0, "h": 34440.0, "l": 33502.0, "c": 34263.0}, {"x": 1773849600000, "o": 34560.0, "h": 34734.0, "l": 33537.0, "c": 33559.0}, {"x": 1773936000000, "o": 33550.0, "h": 33888.0, "l": 32856.0, "c": 33559.0}, {"x": 1774195200000, "o": 33408.0, "h": 33744.0, "l": 32213.0, "c": 32559.0}, {"x": 1774281600000, "o": 32220.0, "h": 33989.0, "l": 32100.0, "c": 32781.0}, {"x": 1774368000000, "o": 33086.0, "h": 33880.0, "l": 32785.0, "c": 33623.0}, {"x": 1774454400000, "o": 33559.0, "h": 34024.0, "l": 33347.0, "c": 33441.0}, {"x": 1774540800000, "o": 33474.0, "h": 33542.0, "l": 32632.0, "c": 33126.0}, {"x": 1774800000000, "o": 33049.0, "h": 33060.0, "l": 32027.0, "c": 32480.0}, {"x": 1774886400000, "o": 32649.0, "h": 32858.0, "l": 31806.0, "c": 31954.0}, {"x": 1774972800000, "o": 31943.0, "h": 33411.0, "l": 31740.0, "c": 33389.0}, {"x": 1775059200000, "o": 33601.0, "h": 33880.0, "l": 32486.0, "c": 32505.0}, {"x": 1775491200000, "o": 32576.0, "h": 33377.0, "l": 32192.0, "c": 33177.0}, {"x": 1775577600000, "o": 33231.0, "h": 35060.0, "l": 32824.0, "c": 35016.0}, {"x": 1775664000000, "o": 35000.0, "h": 35348.0, "l": 34745.0, "c": 34924.0}, {"x": 1775750400000, "o": 34922.0, "h": 35580.0, "l": 34765.0, "c": 35569.0}, {"x": 1776009600000, "o": 35521.0, "h": 35748.0, "l": 35225.0, "c": 35460.0}, {"x": 1776096000000, "o": 35500.0, "h": 36430.0, "l": 35455.0, "c": 36377.0}, {"x": 1776182400000, "o": 36381.0, "h": 37073.0, "l": 36357.0, "c": 36643.0}, {"x": 1776268800000, "o": 37019.0, "h": 37666.0, "l": 37001.0, "c": 37649.0}, {"x": 1776355200000, "o": 37550.0, "h": 37564.0, "l": 36927.0, "c": 37078.0}, {"x": 1776614400000, "o": 37055.0, "h": 37993.0, "l": 37042.0, "c": 37240.0}, {"x": 1776700800000, "o": 37314.0, "h": 38159.0, "l": 37218.0, "c": 38048.0}, {"x": 1776787200000, "o": 38110.0, "h": 38369.0, "l": 37542.0, "c": 38216.0}, {"x": 1776873600000, "o": 38231.0, "h": 39087.0, "l": 37408.0, "c": 37851.0}, {"x": 1776960000000, "o": 37920.0, "h": 39244.0, "l": 37643.0, "c": 39222.0}, {"x": 1777219200000, "o": 39247.0, "h": 40458.0, "l": 39130.0, "c": 39921.0}, {"x": 1777305600000, "o": 39862.0, "h": 40347.0, "l": 39485.0, "c": 39733.0}, {"x": 1777392000000, "o": 39635.0, "h": 39854.0, "l": 39123.0, "c": 39479.0}, {"x": 1777478400000, "o": 39480.0, "h": 39937.0, "l": 39166.0, "c": 39342.0}, {"x": 1777824000000, "o": 39378.0, "h": 41074.0, "l": 39376.0, "c": 41056.0}, {"x": 1777910400000, "o": 40995.0, "h": 41185.0, "l": 40541.0, "c": 41034.0}, {"x": 1777996800000, "o": 41077.0, "h": 42005.0, "l": 40961.0, "c": 41514.0}, {"x": 1778083200000, "o": 41445.0, "h": 42468.0, "l": 41410.0, "c": 42352.0}, {"x": 1778169600000, "o": 42422.0, "h": 42554.0, "l": 41539.0, "c": 41931.0}, {"x": 1778428800000, "o": 41994.0, "h": 42300.0, "l": 41668.0, "c": 41969.0}, {"x": 1778515200000, "o": 41969.0, "h": 42367.0, "l": 41607.0, "c": 41704.0}, {"x": 1778601600000, "o": 41600.0, "h": 41700.0, "l": 40740.0, "c": 41448.0}, {"x": 1778688000000, "o": 41499.0, "h": 42238.0, "l": 41204.0, "c": 41636.0}, {"x": 1778774400000, "o": 41754.0, "h": 42454.0, "l": 40976.0, "c": 40998.0}, {"x": 1779033600000, "o": 41154.0, "h": 41223.0, "l": 40169.0, "c": 40797.0}, {"x": 1779120000000, "o": 40962.0, "h": 41450.0, "l": 40188.0, "c": 40240.0}, {"x": 1779206400000, "o": 40349.0, "h": 40545.0, "l": 39735.0, "c": 40078.0}, {"x": 1779292800000, "o": 40270.0, "h": 41666.0, "l": 40221.0, "c": 41503.0}, {"x": 1779379200000, "o": 41313.0, "h": 42502.0, "l": 41205.0, "c": 42455.0}, {"x": 1779638400000, "o": 42412.0, "h": 44050.0, "l": 42330.0, "c": 43870.0}, {"x": 1779724800000, "o": 43870.0, "h": 44399.0, "l": 43619.0, "c": 43864.0}, {"x": 1779811200000, "o": 43947.0, "h": 45299.0, "l": 43787.0, "c": 44794.0}, {"x": 1779897600000, "o": 44662.0, "h": 45632.0, "l": 43458.0, "c": 43839.0}, {"x": 1779984000000, "o": 43964.0, "h": 45471.0, "l": 43946.0, "c": 45315.0}, {"x": 1780243200000, "o": 45363.0, "h": 46465.0, "l": 44858.0, "c": 46041.0}, {"x": 1780329600000, "o": 46080.0, "h": 46746.0, "l": 45333.0, "c": 46103.0}, {"x": 1780416000000, "o": 46245.0, "h": 46994.0, "l": 46178.0, "c": 46857.0}, {"x": 1780502400000, "o": 46790.0, "h": 46989.0, "l": 46140.0, "c": 46310.0}, {"x": 1780588800000, "o": 46372.0, "h": 46550.0, "l": 44655.0, "c": 45226.0}, {"x": 1780848000000, "o": 45101.0, "h": 45311.0, "l": 40779.0, "c": 43083.0}, {"x": 1780934400000, "o": 43288.0, "h": 44750.0, "l": 43215.0, "c": 44677.0}, {"x": 1781020800000, "o": 44700.0, "h": 45073.0, "l": 42334.0, "c": 43367.0}, {"x": 1781107200000, "o": 43588.0, "h": 43973.0, "l": 42050.0, "c": 43219.0}, {"x": 1781193600000, "o": 43375.0, "h": 44931.0, "l": 43000.0, "c": 44217.0}, {"x": 1781452800000, "o": 43953.0, "h": 45905.0, "l": 43712.0, "c": 45597.0}, {"x": 1781539200000, "o": 45547.0, "h": 46263.0, "l": 45463.0, "c": 45764.0}, {"x": 1781625600000, "o": 45835.0, "h": 45933.0, "l": 44926.0, "c": 45668.0}, {"x": 1781712000000, "o": 46098.0, "h": 46640.0, "l": 45712.0, "c": 46036.0}];
-    const dailyMa20 = [26122.1, 26196.7, 26281.6, 26405.15, 26490.3, 26607.65, 26713.6, 26815.5, 26898.65, 26996.45, 27085.0, 27200.95, 27337.9, 27461.75, 27576.65, 27661.4, 27715.0, 27750.85, 27782.25, 27816.15, 27859.4, 27926.1, 27967.2, 27946.5, 27954.15, 27905.85, 27845.05, 27833.85, 27779.85, 27699.6, 27646.0, 27592.25, 27551.25, 27516.6, 27469.85, 27441.85, 27439.45, 27427.65, 27442.1, 27455.5, 27477.35, 27494.4, 27500.55, 27544.85, 27566.3, 27607.35, 27650.75, 27656.45, 27727.5, 27813.85, 27887.95, 27944.35, 27999.25, 28059.4, 28132.85, 28205.6, 28291.55, 28417.1, 28547.95, 28659.55, 28771.6, 28874.25, 29004.2, 29133.2, 29286.7, 29457.45, 29657.1, 29860.8, 30049.35, 30194.55, 30366.95, 30551.55, 30725.2, 30903.45, 31105.95, 31293.95, 31432.6, 31497.95, 31580.8, 31675.8, 31748.0, 31814.8, 31912.3, 32033.95, 32169.25, 32308.75, 32476.8, 32667.65, 32864.8, 33064.45, 33187.85, 33223.45, 33299.25, 33359.15, 33308.0, 33305.15, 33392.75, 33487.55, 33538.55, 33580.95, 33675.9, 33799.6, 33845.05, 33857.85, 33801.5, 33748.55, 33687.85, 33585.45, 33461.2, 33323.3, 33204.45, 33230.35, 33172.3, 33146.0, 33301.7, 33412.05, 33490.3, 33587.7, 33741.35, 33910.3, 34102.7, 34243.45, 34427.5, 34651.95, 34934.8, 35188.3, 35468.25, 35792.25, 36122.6, 36472.55, 36841.95, 37225.3, 37651.75, 38068.6, 38435.4, 38785.75, 39105.75, 39417.95, 39671.5, 39921.15, 40088.6, 40274.55, 40424.55, 40526.05, 40690.4, 40920.6, 41153.0, 41350.15, 41603.2, 41821.2, 42119.85, 42369.1, 42622.55, 42889.7, 43087.6, 43252.35, 43308.05, 43456.7, 43552.65, 43631.8, 43792.75, 44032.75, 44308.95, 44588.45, 44815.1];
-    const dailyMa60 = [24625.68, 24685.48, 24750.42, 24827.05, 24899.25, 24975.85, 25051.32, 25125.83, 25195.35, 25279.82, 25357.25, 25437.75, 25521.98, 25607.95, 25687.35, 25765.72, 25829.23, 25897.25, 25956.8, 26021.37, 26078.65, 26142.1, 26203.45, 26253.12, 26305.37, 26358.32, 26404.37, 26466.6, 26503.62, 26542.93, 26584.08, 26636.0, 26691.18, 26753.35, 26810.58, 26869.95, 26930.45, 26986.68, 27044.25, 27102.27, 27152.95, 27205.73, 27249.78, 27298.83, 27336.92, 27373.62, 27403.13, 27435.27, 27468.67, 27503.3, 27539.65, 27579.18, 27629.47, 27679.25, 27726.45, 27769.62, 27815.33, 27865.2, 27924.1, 27977.07, 28036.12, 28098.25, 28157.32, 28208.18, 28269.05, 28323.55, 28384.3, 28450.37, 28518.9, 28569.33, 28633.63, 28696.05, 28758.57, 28826.48, 28902.88, 28980.47, 29054.53, 29114.23, 29190.28, 29263.62, 29332.32, 29394.48, 29472.35, 29570.67, 29674.08, 29791.18, 29928.22, 30061.63, 30213.88, 30357.62, 30480.92, 30573.12, 30674.57, 30774.0, 30848.93, 30934.9, 31038.97, 31134.2, 31222.43, 31305.43, 31398.5, 31496.22, 31587.18, 31675.0, 31752.48, 31838.25, 31940.58, 32037.97, 32125.12, 32194.1, 32253.08, 32335.12, 32398.92, 32469.53, 32571.88, 32670.38, 32771.88, 32857.73, 32953.57, 33055.68, 33175.53, 33285.95, 33394.95, 33514.58, 33635.18, 33748.53, 33877.63, 34015.12, 34149.53, 34286.77, 34411.42, 34559.7, 34707.77, 34857.92, 35015.03, 35167.65, 35329.6, 35497.73, 35650.47, 35804.13, 35955.73, 36105.87, 36232.37, 36345.28, 36475.57, 36619.15, 36769.7, 36909.28, 37062.33, 37205.68, 37388.75, 37608.25, 37815.53, 38034.77, 38274.9, 38483.38, 38634.7, 38820.78, 38988.5, 39154.42, 39328.02, 39516.92, 39720.33, 39922.15, 40146.77];
+    const intradayPrices = [46868.0, 46882.0, 46851.0, 46786.0, 46846.0, 46867.0, 46920.0, 46971.0, 46955.0, 47058.0, 47012.0, 47051.0, 47012.0, 47004.0, 46990.0, 46994.0, 46966.0, 46944.0, 46936.0, 46914.0, 46945.0, 46948.0, 46905.0, 46841.0, 46810.0, 46748.0, 46779.0, 46781.0, 46787.0, 46790.0, 46627.0, 46508.0, 46538.0, 46620.0, 46684.0, 46608.0, 46607.0, 46576.0, 46600.0, 46671.0, 46696.0, 46641.0, 46593.0, 46583.0, 46527.0, 46546.0, 46574.0, 46522.0, 46511.0, 46525.0, 46530.0, 46539.0, 46533.0, 46530.0, 46550.0, 46466.0, 46480.0, 46500.0, 46487.0, 46479.0, 46310.0, 46418.0, 46362.0, 46342.0, 46300.0, 46353.0, 46413.0, 46420.0, 46322.0, 46305.0, 46324.0, 46313.0, 46308.0, 46299.0, 46256.0, 46247.0, 46194.0, 46134.0, 46051.0, 46058.0, 46086.0, 46088.0, 46099.0, 46057.0, 46086.0, 46101.0, 46094.0, 46077.0, 46099.0, 46102.0, 46224.0, 46268.0, 46310.0, 46298.0, 46303.0, 46324.0, 46275.0, 46253.0, 46300.0, 46280.0, 46384.0, 46388.0, 46375.0, 46308.0, 46312.0, 46210.0, 46207.0, 46204.0, 46191.0, 46186.0, 46167.0, 46202.0, 46184.0, 46248.0, 46270.0, 46295.0, 46306.0, 46266.0, 46241.0, 46300.0, 46377.0, 46409.0, 46428.0, 46399.0, 46413.0, 46434.0, 46442.0, 46439.0, 46380.0, 46397.0, 46432.0, 46439.0, 46458.0, 46513.0, 46501.0, 46551.0, 46568.0, 46543.0, 46558.0, 46595.0, 46581.0, 46609.0, 46630.0, 46625.0, 46642.0, 46636.0, 46638.0, 46640.0, 46642.0, 46626.0, 46600.0, 46595.0, 46580.0, 46568.0, 46590.0, 46586.0, 46582.0, 46606.0, 46594.0, 46576.0, 46573.0, 46589.0, 46564.0, 46561.0, 46552.0, 46558.0, 46553.0, 46534.0, 46566.0, 46593.0, 46567.0, 46584.0, 46615.0, 46593.0, 46587.0, 46613.0, 46609.0, 46611.0, 46582.0, 46583.0, 46605.0, 46651.0, 46658.0, 46664.0, 46643.0, 46637.0, 46645.0, 46598.0, 46588.0, 46586.0, 46579.0, 46598.0, 46584.0, 46533.0, 46541.0, 46528.0, 46544.0, 46539.0, 46525.0, 46532.0, 46534.0, 46552.0, 46536.0, 46530.0, 46455.0, 46413.0, 46404.0, 46380.0, 46390.0, 46383.0, 46317.0, 46305.0, 46312.0, 46300.0, 46296.0, 46279.0, 46229.0, 46256.0, 46290.0, 46290.0, 46279.0, 46244.0, 46220.0, 46323.0, 46365.0, 46391.0, 46383.0, 46370.0, 46391.0, 46316.0, 46310.0, 46326.0, 46296.0, 46287.0, 46340.0, 46350.0, 46351.0, 46352.0, 46370.0, 46387.0, 46437.0, 46415.0, 46430.0, 46430.0, 46370.0, 46336.0, 46386.0, 46433.0, 46416.0, 46422.0, 46442.0, 46427.0, 46434.0, 46425.0, 46468.0, 46428.0, 46436.0, 46434.0, 46440.0, 46450.0, 46488.0, 46440.0, 46480.0, 46456.0, 46452.0, 46442.0, 46441.0, 46416.0, 46393.0, 46394.0, 46404.0, 46430.0, 46448.0, 46464.0, 46449.0, 46425.0, 46486.0, 46476.0, 46532.0, 46560.0, 46569.0, 46595.0, 46587.0, 46575.0, 46590.0, 46594.0, 46596.0, 46565.0, 46581.0, 46599.0, 46581.0, 46560.0, 46609.0, 46608.0, 46604.0, 46613.0, 46610.0, 46592.0, 46602.0, 46601.0, 46592.0, 46603.0, 46587.0, 46580.0, 46557.0, 46548.0, 46561.0, 46537.0, 46528.0, 46534.0, 46497.0, 46488.0, 46500.0, 46478.0, 46485.0, 46466.0, 46449.0, 46432.0, 46449.0, 46471.0, 46431.0, 46424.0, 46410.0, 46416.0, 46445.0, 46424.0, 46414.0, 46433.0, 46468.0, 46465.0, 46490.0, 46486.0, 46422.0, 46415.0, 46370.0, 46386.0, 46407.0, 46405.0, 46389.0, 46428.0, 46432.0, 46462.0, 46457.0, 46470.0, 46444.0, 46434.0, 46410.0, 46394.0, 46421.0, 46412.0, 46407.0, 46422.0, 46407.0, 46400.0, 46385.0, 46426.0, 46440.0, 46433.0, 46400.0, 46423.0, 46395.0, 46362.0, 46344.0, 46326.0, 46328.0, 46349.0, 46332.0, 46319.0, 46308.0, 46333.0, 46320.0, 46302.0, 46324.0, 46373.0, 46349.0, 46296.0, 46286.0, 46278.0, 46305.0, 46345.0, 46362.0, 46347.0, 46354.0, 46393.0, 46372.0, 46308.0, 46298.0, 46230.0, 46245.0, 46282.0, 46278.0, 46400.0, 46466.0, 46422.0, 46460.0, 46326.0, 46250.0, 46286.0, 46349.0, 46393.0, 46440.0, 46352.0, 46375.0, 46333.0, 46343.0, 46353.0, 46288.0, 46383.0, 46443.0, 46387.0, 46445.0, 46503.0, 46580.0, 46582.0, 46535.0, 46491.0, 46456.0, 46536.0, 46543.0, 46583.0, 46635.0, 46643.0, 46645.0, 46619.0, 46636.0, 46585.0, 46582.0, 46556.0, 46536.0, 46592.0, 46588.0, 46574.0, 46612.0, 46597.0, 46622.0, 46601.0, 46635.0, 46613.0, 46632.0, 46639.0, 46683.0, 46645.0, 46589.0, 46675.0, 46612.0, 46582.0, 46553.0, 46543.0, 46543.0, 46559.0, 46510.0, 46462.0, 46420.0, 46442.0, 46468.0, 46460.0, 46542.0, 46554.0, 46486.0, 46459.0, 46458.0, 46446.0, 46478.0, 46476.0, 46431.0, 46423.0, 46407.0, 46380.0, 46411.0, 46451.0, 46475.0, 46503.0, 46465.0, 46422.0, 46417.0, 46395.0, 46421.0, 46461.0, 46433.0, 46466.0, 46477.0, 46488.0, 46473.0, 46457.0, 46465.0, 46407.0, 46379.0, 46419.0, 46390.0, 46402.0, 46397.0, 46386.0, 46404.0, 46393.0, 46400.0, 46395.0, 46359.0, 46341.0, 46305.0, 46323.0, 46368.0, 46335.0, 46346.0, 46313.0, 46297.0, 46300.0, 46315.0, 46272.0, 46257.0, 46273.0, 46328.0, 46365.0, 46345.0, 46364.0, 46343.0, 46383.0, 46386.0, 46354.0, 46296.0, 46300.0, 46291.0, 46318.0, 46326.0, 46319.0, 46323.0, 46329.0, 46315.0, 46321.0, 46340.0, 46298.0, 46333.0, 46396.0, 46435.0, 46460.0, 46451.0, 46421.0, 46433.0, 46461.0, 46443.0, 46454.0, 46477.0, 46499.0, 46512.0, 46522.0, 46521.0, 46549.0, 46516.0, 46495.0, 46527.0, 46529.0, 46559.0, 46576.0, 46576.0, 46564.0, 46562.0, 46530.0, 46521.0, 46509.0, 46501.0, 46485.0, 46459.0, 46479.0, 46492.0, 46511.0, 46501.0, 46486.0, 46474.0, 46486.0, 46497.0, 46488.0, 46476.0, 46470.0, 46485.0, 46469.0, 46461.0, 46452.0, 46473.0, 46478.0, 46470.0, 46479.0, 46495.0, 46506.0, 46507.0, 46515.0, 46542.0, 46500.0, 46499.0, 46480.0, 46442.0, 46472.0, 46446.0, 46442.0, 46452.0, 46446.0, 46446.0, 46428.0, 46413.0, 46417.0, 46447.0, 46440.0, 46414.0, 46438.0, 46406.0, 46388.0, 46391.0, 46374.0, 46380.0, 46382.0, 46384.0, 46401.0, 46430.0, 46472.0, 46473.0, 46466.0, 46436.0, 46436.0, 46444.0, 46393.0, 46417.0, 46412.0, 46425.0, 46457.0, 46460.0, 46465.0, 46488.0, 46460.0, 46465.0, 46468.0, 46483.0, 46446.0, 46422.0, 46415.0, 46426.0, 46446.0, 46451.0, 46472.0, 46471.0, 46436.0, 46430.0, 46419.0, 46416.0, 46400.0, 46399.0, 46395.0, 46394.0, 46413.0, 46392.0, 46390.0, 46398.0, 46412.0, 46391.0, 46367.0, 46357.0, 46334.0, 46308.0, 46290.0, 46289.0, 46295.0, 46286.0, 46272.0, 46326.0, 46369.0, 46359.0, 46348.0, 46334.0, 46333.0, 46319.0, 46271.0, 46286.0, 46294.0, 46300.0, 46299.0, 46292.0, 46288.0, 46308.0, 46308.0, 46294.0, 46280.0, 46271.0, 46277.0, 46272.0, 46281.0, 46309.0, 46310.0, 46302.0, 46285.0, 46277.0, 46277.0, 46274.0, 46292.0, 46286.0, 46300.0, 46286.0, 46276.0, 46267.0, 46260.0, 46256.0, 46260.0, 46237.0, 46220.0, 46134.0, 46154.0, 46098.0, 46098.0, 46084.0, 46066.0, 46066.0, 46063.0, 46124.0, 46125.0, 46186.0, 46178.0, 46141.0, 46107.0, 46131.0, 46111.0, 46122.0, 46158.0, 46196.0, 46232.0, 46231.0, 46299.0, 46282.0, 46308.0, 46350.0, 46344.0, 46286.0, 46261.0, 46235.0, 46243.0, 46228.0, 46279.0, 46288.0, 46277.0, 46283.0, 46273.0, 46264.0, 46226.0, 46222.0, 46205.0, 46194.0, 46216.0, 46222.0, 46321.0, 46302.0, 46306.0, 46298.0, 46302.0, 46294.0, 46313.0, 46282.0, 46278.0, 46296.0, 46305.0, 46300.0, 46278.0, 46296.0, 46269.0, 46268.0, 46273.0, 46255.0, 46235.0, 46212.0, 46229.0, 46237.0, 46222.0, 46187.0, 46170.0, 46140.0, 46191.0, 46183.0, 46149.0, 46151.0, 46163.0, 46238.0, 46204.0, 46202.0, 46180.0, 46171.0, 46118.0, 46130.0, 46129.0, 46187.0, 46191.0, 46196.0, 46195.0, 46194.0, 46223.0, 46216.0, 46222.0, 46226.0, 46250.0, 46261.0, 46283.0, 46267.0, 46264.0, 46281.0, 46280.0, 46276.0, 46290.0, 46281.0, 46273.0, 46281.0, 46294.0, 46302.0, 46298.0, 46279.0, 46284.0, 46306.0, 46302.0, 46308.0, 46310.0, 46300.0, 46300.0, 46303.0, 46320.0, 46316.0, 46314.0, 46312.0, 46306.0, 46296.0, 46299.0, 46303.0, 46309.0, 46308.0, 46304.0, 46295.0, 46299.0, 46290.0, 46280.0, 46275.0, 46275.0, 46267.0, 46251.0, 46239.0, 46246.0, 46240.0, 46218.0, 46211.0, 46207.0];
+    const intradayVwaps = [46887.0, 46891.67, 46868.0, 46785.67, 46820.33, 46852.33, 46899.67, 46959.67, 46953.67, 47023.67, 47019.67, 47046.33, 47017.67, 47011.0, 47001.33, 46977.33, 46969.33, 46961.67, 46935.67, 46919.0, 46942.33, 46949.67, 46893.0, 46859.67, 46816.33, 46772.33, 46784.33, 46770.0, 46779.0, 46796.67, 46672.67, 46554.33, 46532.67, 46589.0, 46658.67, 46643.33, 46602.67, 46590.67, 46589.67, 46646.33, 46692.33, 46667.33, 46610.0, 46594.0, 46543.0, 46547.33, 46569.33, 46545.0, 46505.67, 46530.67, 46528.0, 46520.33, 46531.67, 46525.0, 46527.0, 46488.0, 46465.67, 46482.67, 46481.33, 46488.33, 46379.33, 46380.33, 46385.0, 46353.67, 46323.67, 46337.0, 46394.67, 46403.33, 46335.0, 46286.67, 46311.0, 46319.67, 46312.33, 46316.0, 46270.33, 46257.33, 46212.67, 46153.33, 46080.67, 46082.33, 46083.33, 46105.0, 46100.0, 46084.33, 46072.33, 46096.33, 46086.33, 46076.33, 46099.0, 46091.0, 46181.67, 46258.33, 46300.33, 46285.33, 46292.0, 46320.33, 46294.0, 46263.67, 46289.33, 46290.33, 46353.33, 46380.33, 46381.33, 46326.67, 46313.67, 46246.67, 46199.0, 46206.67, 46187.0, 46191.33, 46180.67, 46194.67, 46193.33, 46228.33, 46260.67, 46286.67, 46291.0, 46281.33, 46254.33, 46282.0, 46352.67, 46398.67, 46417.0, 46403.0, 46404.0, 46426.0, 46440.0, 46441.33, 46398.33, 46398.0, 46414.0, 46428.33, 46448.33, 46520.67, 46508.33, 46537.0, 46559.33, 46546.33, 46552.0, 46580.0, 46593.33, 46599.33, 46627.0, 46625.0, 46637.0, 46638.0, 46635.33, 46646.0, 46631.67, 46629.33, 46612.67, 46597.67, 46593.67, 46571.67, 46581.67, 46593.33, 46581.0, 46599.33, 46600.67, 46584.0, 46570.67, 46578.0, 46570.67, 46571.0, 46557.0, 46554.0, 46547.67, 46546.0, 46556.67, 46585.0, 46576.67, 46576.67, 46606.0, 46600.67, 46599.33, 46601.0, 46620.0, 46611.67, 46588.0, 46582.67, 46597.33, 46636.0, 46662.0, 46655.67, 46654.0, 46638.67, 46637.67, 46612.33, 46582.0, 46589.33, 46580.0, 46593.0, 46582.67, 46548.0, 46541.33, 46530.0, 46547.33, 46544.33, 46522.0, 46524.67, 46532.0, 46545.67, 46538.67, 46536.33, 46477.33, 46431.67, 46405.67, 46382.33, 46389.67, 46382.33, 46330.33, 46310.0, 46310.67, 46318.33, 46294.0, 46292.33, 46252.67, 46244.33, 46276.67, 46282.33, 46283.67, 46256.0, 46228.0, 46293.67, 46349.33, 46383.33, 46382.67, 46374.33, 46378.33, 46340.0, 46306.67, 46313.0, 46297.67, 46292.0, 46328.0, 46334.33, 46348.67, 46361.0, 46358.67, 46389.67, 46420.0, 46425.33, 46428.33, 46428.33, 46384.67, 46341.67, 46371.33, 46416.0, 46428.0, 46411.33, 46435.67, 46439.67, 46426.67, 46425.0, 46454.67, 46436.33, 46430.0, 46434.67, 46444.0, 46443.0, 46463.33, 46461.33, 46473.0, 46467.0, 46448.67, 46444.0, 46444.0, 46420.67, 46395.0, 46393.0, 46393.33, 46425.0, 46446.0, 46467.33, 46451.0, 46435.33, 46467.33, 46471.0, 46517.33, 46552.33, 46573.33, 46586.33, 46589.0, 46579.33, 46590.33, 46596.67, 46609.33, 46573.67, 46568.33, 46591.33, 46580.0, 46570.67, 46598.33, 46610.67, 46604.67, 46606.33, 46609.67, 46594.67, 46599.33, 46602.0, 46591.0, 46603.67, 46595.0, 46585.33, 46565.0, 46551.0, 46553.33, 46543.0, 46533.33, 46531.0, 46517.33, 46486.0, 46496.0, 46484.67, 46489.67, 46468.0, 46456.67, 46435.67, 46441.33, 46471.67, 46442.33, 46416.67, 46419.33, 46418.67, 46437.67, 46425.0, 46413.67, 46426.33, 46460.0, 46462.0, 46484.0, 46495.67, 46438.33, 46408.33, 46390.0, 46379.33, 46397.67, 46398.33, 46399.33, 46417.33, 46430.33, 46457.67, 46461.67, 46459.67, 46454.33, 46438.33, 46422.33, 46398.0, 46413.33, 46417.0, 46413.67, 46416.33, 46407.33, 46400.0, 46395.0, 46413.33, 46435.0, 46439.33, 46411.67, 46412.0, 46405.33, 46373.0, 46343.33, 46334.0, 46319.67, 46346.33, 46334.67, 46319.33, 46316.33, 46325.67, 46316.33, 46304.33, 46312.33, 46356.33, 46359.0, 46314.0, 46288.0, 46287.67, 46300.67, 46331.0, 46353.67, 46353.67, 46352.0, 46384.33, 46379.67, 46326.33, 46305.0, 46255.0, 46234.0, 46269.67, 46286.67, 46329.33, 46439.33, 46425.67, 46448.67, 46372.33, 46287.33, 46301.67, 46321.67, 46386.33, 46415.0, 46381.67, 46360.67, 46347.0, 46340.67, 46359.67, 46307.33, 46352.33, 46425.67, 46414.0, 46434.67, 46484.0, 46550.67, 46581.67, 46556.0, 46501.67, 46456.0, 46512.67, 46534.0, 46567.67, 46617.0, 46642.67, 46647.67, 46629.67, 46632.0, 46602.33, 46577.67, 46578.33, 46537.33, 46588.33, 46601.33, 46582.33, 46595.33, 46597.67, 46614.33, 46605.0, 46620.0, 46615.67, 46619.0, 46622.67, 46673.67, 46654.33, 46607.67, 46649.67, 46627.67, 46594.33, 46548.67, 46555.67, 46532.0, 46556.0, 46529.33, 46482.33, 46434.33, 46443.33, 46459.67, 46446.33, 46520.33, 46554.0, 46505.33, 46471.67, 46453.0, 46454.33, 46461.67, 46479.33, 46436.33, 46428.67, 46413.0, 46393.33, 46410.33, 46437.67, 46455.0, 46500.33, 46475.0, 46433.67, 46414.0, 46396.0, 46422.33, 46442.67, 46431.0, 46455.67, 46470.0, 46489.33, 46478.0, 46460.67, 46468.67, 46425.33, 46391.33, 46402.0, 46401.0, 46396.33, 46398.33, 46392.67, 46394.0, 46399.33, 46399.0, 46396.0, 46359.0, 46349.0, 46320.0, 46327.33, 46351.67, 46348.0, 46346.0, 46325.33, 46297.33, 46293.0, 46314.33, 46285.33, 46264.67, 46276.33, 46308.67, 46352.0, 46354.33, 46369.67, 46348.0, 46371.67, 46390.33, 46361.67, 46310.67, 46295.67, 46289.0, 46308.0, 46320.33, 46328.67, 46328.33, 46333.0, 46321.33, 46319.67, 46332.67, 46312.67, 46325.0, 46375.33, 46424.33, 46453.0, 46461.67, 46420.67, 46424.33, 46450.67, 46446.0, 46447.33, 46460.67, 46495.67, 46514.0, 46522.67, 46520.33, 46547.0, 46520.33, 46502.0, 46518.0, 46525.0, 46553.67, 46569.33, 46573.67, 46568.67, 46566.0, 46545.0, 46528.67, 46516.67, 46511.67, 46492.67, 46466.0, 46476.0, 46487.33, 46505.33, 46500.33, 46491.0, 46475.67, 46477.33, 46495.0, 46495.33, 46483.67, 46465.0, 46477.33, 46475.0, 46464.67, 46452.0, 46469.67, 46476.67, 46476.0, 46479.33, 46492.67, 46505.0, 46504.33, 46517.33, 46538.67, 46516.67, 46500.33, 46479.0, 46454.0, 46461.33, 46444.0, 46439.67, 46455.33, 46439.67, 46444.67, 46439.0, 46422.33, 46417.33, 46434.67, 46446.67, 46423.67, 46430.67, 46412.33, 46394.33, 46391.67, 46380.0, 46378.67, 46382.0, 46382.33, 46394.33, 46424.0, 46456.67, 46470.67, 46467.67, 46449.67, 46437.33, 46437.33, 46408.0, 46409.0, 46408.67, 46419.33, 46452.0, 46456.0, 46465.67, 46481.67, 46466.67, 46458.33, 46470.67, 46483.67, 46458.33, 46431.0, 46412.67, 46425.33, 46443.33, 46442.67, 46465.33, 46470.67, 46448.33, 46432.33, 46423.0, 46415.33, 46402.67, 46398.0, 46397.67, 46393.67, 46406.33, 46399.33, 46388.0, 46397.67, 46411.0, 46393.0, 46372.67, 46359.0, 46340.67, 46313.67, 46292.33, 46290.33, 46294.0, 46292.33, 46279.0, 46305.0, 46356.0, 46363.67, 46349.0, 46340.33, 46332.67, 46322.0, 46287.33, 46284.67, 46293.33, 46295.33, 46300.0, 46297.33, 46293.33, 46307.67, 46315.67, 46297.0, 46284.33, 46276.0, 46275.0, 46272.67, 46275.33, 46302.0, 46315.67, 46306.67, 46289.33, 46282.0, 46279.33, 46275.67, 46295.67, 46284.33, 46294.0, 46289.0, 46283.0, 46270.67, 46265.67, 46259.0, 46258.67, 46240.33, 46225.33, 46162.67, 46153.67, 46115.67, 46108.33, 46091.0, 46080.67, 46073.0, 46068.67, 46106.67, 46125.0, 46169.33, 46185.33, 46153.67, 46118.0, 46119.0, 46114.33, 46120.67, 46146.0, 46179.67, 46220.33, 46230.33, 46275.33, 46281.33, 46298.67, 46331.33, 46357.0, 46306.67, 46269.67, 46243.0, 46241.67, 46234.67, 46258.67, 46280.67, 46269.33, 46283.33, 46279.33, 46270.67, 46234.33, 46226.0, 46212.33, 46200.0, 46200.33, 46224.67, 46299.67, 46307.67, 46300.67, 46308.33, 46296.67, 46294.33, 46307.0, 46297.0, 46280.67, 46285.33, 46296.33, 46305.33, 46288.33, 46299.0, 46279.0, 46274.0, 46272.67, 46261.0, 46241.67, 46215.0, 46227.0, 46242.0, 46228.33, 46201.0, 46174.0, 46145.33, 46178.0, 46190.33, 46159.33, 46151.33, 46154.67, 46214.67, 46210.33, 46206.67, 46191.0, 46168.67, 46139.67, 46126.67, 46129.67, 46172.67, 46188.67, 46192.67, 46190.67, 46192.33, 46216.33, 46218.67, 46216.33, 46226.0, 46240.67, 46257.67, 46275.0, 46274.67, 46263.33, 46274.0, 46281.67, 46274.33, 46285.33, 46283.33, 46271.33, 46279.33, 46289.33, 46301.0, 46299.33, 46284.33, 46284.0, 46302.0, 46302.67, 46304.67, 46311.0, 46301.0, 46298.33, 46302.0, 46316.67, 46316.0, 46315.67, 46312.33, 46307.67, 46299.67, 46298.33, 46303.0, 46309.0, 46308.33, 46302.0, 46297.67, 46300.0, 46293.33, 46283.33, 46276.67, 46275.33, 46270.33, 46257.0, 46243.67, 46241.33, 46243.67, 46223.0, 46215.0, 46208.33];
 
-    // 切換走勢圖模式
-    function switchChart(type) {
-        const cIntraday = document.getElementById('intradayChart');
-        const cDaily = document.getElementById('dailyChart');
-        const tabs = document.querySelectorAll('.chart-tab');
+    // 日K 蠟燭圖資料
+    const dailyLabels = ["03/27", "03/30", "03/31", "04/01", "04/02", "04/07", "04/08", "04/09", "04/10", "04/13", "04/14", "04/15", "04/16", "04/17", "04/20", "04/21", "04/22", "04/23", "04/24", "04/27", "04/28", "04/29", "04/30", "05/04", "05/05", "05/06", "05/07", "05/08", "05/11", "05/12", "05/13", "05/14", "05/15", "05/18", "05/19", "05/20", "05/21", "05/22", "05/25", "05/26", "05/27", "05/28", "05/29", "06/01", "06/02", "06/03", "06/04", "06/05", "06/08", "06/09", "06/10", "06/11", "06/12", "06/15", "06/16", "06/17", "06/18", "06/22", "06/23", "06/24"];
+    const dailyKbars = [{"x": 1774569600000, "o": 33474.0, "h": 33542.0, "l": 32632.0, "c": 33126.0}, {"x": 1774828800000, "o": 33049.0, "h": 33060.0, "l": 32027.0, "c": 32480.0}, {"x": 1774915200000, "o": 32649.0, "h": 32858.0, "l": 31806.0, "c": 31954.0}, {"x": 1775001600000, "o": 31943.0, "h": 33411.0, "l": 31740.0, "c": 33389.0}, {"x": 1775088000000, "o": 33601.0, "h": 33880.0, "l": 32486.0, "c": 32505.0}, {"x": 1775520000000, "o": 32576.0, "h": 33377.0, "l": 32192.0, "c": 33177.0}, {"x": 1775606400000, "o": 33231.0, "h": 35060.0, "l": 32824.0, "c": 35016.0}, {"x": 1775692800000, "o": 35000.0, "h": 35348.0, "l": 34745.0, "c": 34924.0}, {"x": 1775779200000, "o": 34922.0, "h": 35580.0, "l": 34765.0, "c": 35569.0}, {"x": 1776038400000, "o": 35521.0, "h": 35748.0, "l": 35225.0, "c": 35460.0}, {"x": 1776124800000, "o": 35500.0, "h": 36430.0, "l": 35455.0, "c": 36377.0}, {"x": 1776211200000, "o": 36381.0, "h": 37073.0, "l": 36357.0, "c": 36643.0}, {"x": 1776297600000, "o": 37019.0, "h": 37666.0, "l": 37001.0, "c": 37649.0}, {"x": 1776384000000, "o": 37550.0, "h": 37564.0, "l": 36927.0, "c": 37078.0}, {"x": 1776643200000, "o": 37055.0, "h": 37993.0, "l": 37042.0, "c": 37240.0}, {"x": 1776729600000, "o": 37314.0, "h": 38159.0, "l": 37218.0, "c": 38048.0}, {"x": 1776816000000, "o": 38110.0, "h": 38369.0, "l": 37542.0, "c": 38216.0}, {"x": 1776902400000, "o": 38231.0, "h": 39087.0, "l": 37408.0, "c": 37851.0}, {"x": 1776988800000, "o": 37920.0, "h": 39244.0, "l": 37643.0, "c": 39222.0}, {"x": 1777248000000, "o": 39247.0, "h": 40458.0, "l": 39130.0, "c": 39921.0}, {"x": 1777334400000, "o": 39862.0, "h": 40347.0, "l": 39485.0, "c": 39733.0}, {"x": 1777420800000, "o": 39635.0, "h": 39854.0, "l": 39123.0, "c": 39479.0}, {"x": 1777507200000, "o": 39480.0, "h": 39937.0, "l": 39166.0, "c": 39342.0}, {"x": 1777852800000, "o": 39378.0, "h": 41074.0, "l": 39376.0, "c": 41056.0}, {"x": 1777939200000, "o": 40995.0, "h": 41185.0, "l": 40541.0, "c": 41034.0}, {"x": 1778025600000, "o": 41077.0, "h": 42005.0, "l": 40961.0, "c": 41514.0}, {"x": 1778112000000, "o": 41445.0, "h": 42468.0, "l": 41410.0, "c": 42352.0}, {"x": 1778198400000, "o": 42422.0, "h": 42554.0, "l": 41539.0, "c": 41931.0}, {"x": 1778457600000, "o": 41994.0, "h": 42300.0, "l": 41668.0, "c": 41969.0}, {"x": 1778544000000, "o": 41969.0, "h": 42367.0, "l": 41607.0, "c": 41704.0}, {"x": 1778630400000, "o": 41600.0, "h": 41700.0, "l": 40740.0, "c": 41448.0}, {"x": 1778716800000, "o": 41499.0, "h": 42238.0, "l": 41204.0, "c": 41636.0}, {"x": 1778803200000, "o": 41754.0, "h": 42454.0, "l": 40976.0, "c": 40998.0}, {"x": 1779062400000, "o": 41154.0, "h": 41223.0, "l": 40169.0, "c": 40797.0}, {"x": 1779148800000, "o": 40962.0, "h": 41450.0, "l": 40188.0, "c": 40240.0}, {"x": 1779235200000, "o": 40349.0, "h": 40545.0, "l": 39735.0, "c": 40078.0}, {"x": 1779321600000, "o": 40270.0, "h": 41666.0, "l": 40221.0, "c": 41503.0}, {"x": 1779408000000, "o": 41313.0, "h": 42502.0, "l": 41205.0, "c": 42455.0}, {"x": 1779667200000, "o": 42412.0, "h": 44050.0, "l": 42330.0, "c": 43870.0}, {"x": 1779753600000, "o": 43870.0, "h": 44399.0, "l": 43619.0, "c": 43864.0}, {"x": 1779840000000, "o": 43947.0, "h": 45299.0, "l": 43787.0, "c": 44794.0}, {"x": 1779926400000, "o": 44662.0, "h": 45632.0, "l": 43458.0, "c": 43839.0}, {"x": 1780012800000, "o": 43964.0, "h": 45471.0, "l": 43946.0, "c": 45315.0}, {"x": 1780272000000, "o": 45363.0, "h": 46465.0, "l": 44858.0, "c": 46041.0}, {"x": 1780358400000, "o": 46080.0, "h": 46746.0, "l": 45333.0, "c": 46103.0}, {"x": 1780444800000, "o": 46245.0, "h": 46994.0, "l": 46178.0, "c": 46857.0}, {"x": 1780531200000, "o": 46790.0, "h": 46989.0, "l": 46140.0, "c": 46310.0}, {"x": 1780617600000, "o": 46372.0, "h": 46550.0, "l": 44655.0, "c": 45226.0}, {"x": 1780876800000, "o": 45101.0, "h": 45311.0, "l": 40779.0, "c": 43083.0}, {"x": 1780963200000, "o": 43288.0, "h": 44750.0, "l": 43215.0, "c": 44677.0}, {"x": 1781049600000, "o": 44700.0, "h": 45073.0, "l": 42334.0, "c": 43367.0}, {"x": 1781136000000, "o": 43588.0, "h": 43973.0, "l": 42050.0, "c": 43219.0}, {"x": 1781222400000, "o": 43375.0, "h": 44931.0, "l": 43000.0, "c": 44217.0}, {"x": 1781481600000, "o": 43953.0, "h": 45905.0, "l": 43712.0, "c": 45597.0}, {"x": 1781568000000, "o": 45547.0, "h": 46263.0, "l": 45463.0, "c": 45764.0}, {"x": 1781654400000, "o": 45835.0, "h": 45933.0, "l": 44926.0, "c": 45668.0}, {"x": 1781740800000, "o": 46098.0, "h": 46778.0, "l": 45712.0, "c": 46752.0}, {"x": 1782086400000, "o": 46751.0, "h": 48476.0, "l": 46729.0, "c": 48428.0}, {"x": 1782172800000, "o": 48531.0, "h": 49240.0, "l": 47404.0, "c": 47437.0}, {"x": 1782259200000, "o": 46940.0, "h": 47072.0, "l": 46022.0, "c": 46207.0}];
 
-        tabs.forEach(tab => tab.classList.remove('active'));
+    // 關鍵價位線
+    const pivotVal = 46434;
+    const r1Val = 46846;
+    const s1Val = 45796;
+    const ma20Val = 45445;
+    const lvl46000 = 46000;
 
-        if (type === 'real') {
-            cIntraday.style.opacity = '1';
-            cIntraday.style.zIndex = '5';
-            cDaily.style.opacity = '0';
-            cDaily.style.zIndex = '1';
-            tabs[0].classList.add('active');
+    let intradayChart = null;
+    let dailyChartObj = null;
+    let currentView = 'real';
+
+    function switchChart(view) {
+        currentView = view;
+        const intraCanvas = document.getElementById('intradayChart');
+        const dailyCanvas = document.getElementById('dailyChart');
+        document.querySelectorAll('.chart-tab').forEach(b => b.classList.remove('active'));
+        if (view === 'real') {
+            intraCanvas.style.opacity = 1; intraCanvas.style.zIndex = 5;
+            dailyCanvas.style.opacity = 0; dailyCanvas.style.zIndex = 1;
+            event.target.classList.add('active');
         } else {
-            cIntraday.style.opacity = '0';
-            cIntraday.style.zIndex = '1';
-            cDaily.style.opacity = '1';
-            cDaily.style.zIndex = '5';
-            tabs[1].classList.add('active');
+            intraCanvas.style.opacity = 0; intraCanvas.style.zIndex = 1;
+            dailyCanvas.style.opacity = 1; dailyCanvas.style.zIndex = 5;
+            event.target.classList.add('active');
+            if (!dailyChartObj) initDailyChart();
         }
     }
 
-    // 繪製江波圖
-    try {
-        if(intradayLabels.length > 0) {
-            const ctxI = document.getElementById('intradayChart').getContext('2d');
-            window.intradayChartObj = new Chart(ctxI, {
-                type: 'line',
-                data: {
-                    labels: intradayLabels,
-                    datasets: [
-                        {
-                            label: '台指期走勢',
-                            data: intradayPrices,
-                            borderColor: '#38bdf8', // 亮藍色
-                            borderWidth: 1,
-                            pointRadius: 0,
-                            fill: true,
-                            backgroundColor: 'rgba(56, 189, 248, 0.1)',
-                            tension: 0.1
-                        },
-                        {
-                            label: '均價線 (VWAP)',
-                            data: intradayVwaps,
-                            borderColor: '#f59e0b', // 橘黃色
-                            borderWidth: 2,
-                            pointRadius: 0,
-                            borderDash: [5, 5],
-                            fill: false,
-                            tension: 0.1
-                        }
-                    ]
-                },
-                options: { 
-                    responsive: true, maintainAspectRatio: false,
-                    interaction: { mode: 'index', intersect: false },
-                    plugins: { legend: { labels: { color: '#9ca3af' } } },
-                    scales: { 
-                        x: { ticks: { color: '#9ca3af', maxTicksLimit: 10 }, grid: { display: false } },
-                        y: { ticks: { color: '#9ca3af' }, grid: { color: 'rgba(255,255,255,0.05)' } }
-                    }
-                }
-            });
-        }
-    } catch(e) { console.error("Intraday chart error", e); }
+    // 夜盤折線圖
+    (function() {
+        const ctx = document.getElementById('intradayChart').getContext('2d');
+        const minP = Math.min(...intradayPrices) - 200;
+        const maxP = Math.max(...intradayPrices) + 200;
 
-
-
-    // 繪製日 K 線
-    try {
-        const ctxD = document.getElementById('dailyChart').getContext('2d');
-        window.dailyChartObj = new Chart(ctxD, {
-            type: 'candlestick',
+        intradayChart = new Chart(ctx, {
+            type: 'line',
             data: {
+                labels: intradayLabels,
                 datasets: [
                     {
-                        label: '技術走勢 K 線',
-                        data: dailyKbars,
-                        color: {
-                            up: '#ef4444',
-                            down: '#10b981',
-                            unchanged: '#9ca3af',
-                        },
-                        borderColor: {
-                            up: '#ef4444',
-                            down: '#10b981',
-                            unchanged: '#9ca3af',
-                        }
-                    },
-                    {
-                        type: 'line',
-                        label: '20MA (月線)',
-                        data: dailyMa20.map((y, i) => ({x: dailyKbars[i].x, y: y})),
-                        borderColor: '#a855f7',
+                        label: '夜盤收盤價',
+                        data: intradayPrices,
+                        borderColor: '#ef4444',
+                        backgroundColor: 'rgba(239,68,68,0.08)',
                         borderWidth: 1.5,
                         pointRadius: 0,
-                        fill: false,
-                        tension: 0.1
+                        tension: 0.1,
+                        fill: true,
+                        order: 1
                     },
                     {
-                        type: 'line',
-                        label: '60MA (季線)',
-                        data: dailyMa60.map((y, i) => ({x: dailyKbars[i].x, y: y})),
+                        label: 'VWAP',
+                        data: intradayVwaps,
                         borderColor: '#3b82f6',
+                        backgroundColor: 'transparent',
                         borderWidth: 1.5,
+                        borderDash: [4, 4],
                         pointRadius: 0,
-                        fill: false,
-                        tension: 0.1
+                        tension: 0.3,
+                        order: 2
                     }
                 ]
             },
-            options: { responsive: true, maintainAspectRatio: false,
-                plugins: { legend: { labels: { color: '#9ca3af' } } },
-                scales: { 
-                    x: { type: 'time', time: { unit: 'day', tooltipFormat: 'MM/dd' }, ticks: { color: '#9ca3af' } },
-                    y: { ticks: { color: '#9ca3af' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: { duration: 1000 },
+                plugins: {
+                    legend: { display: true, position: 'top', labels: { color: '#9ca3af', font: { size: 11 }, boxWidth: 20 } },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(10,14,23,0.9)',
+                        borderColor: 'rgba(255,255,255,0.1)',
+                        borderWidth: 1,
+                        callbacks: {
+                            label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()}`
+                        }
+                    },
+                    annotation: {}
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#6b7280',
+                            maxTicksLimit: 12,
+                            font: { size: 10 }
+                        },
+                        grid: { color: 'rgba(255,255,255,0.03)' }
+                    },
+                    y: {
+                        min: minP, max: maxP,
+                        ticks: {
+                            color: '#6b7280',
+                            font: { size: 10 },
+                            callback: v => v.toLocaleString()
+                        },
+                        grid: { color: 'rgba(255,255,255,0.04)' }
+                    }
                 }
             }
         });
-    } catch(e) { console.error("Daily chart error", e); }
-</script>
 
+        // 繪製關鍵水平線
+        const plugin = {
+            id: 'horizontalLines',
+            afterDraw(chart) {
+                const ctx = chart.ctx;
+                const yAxis = chart.scales.y;
+                const xAxis = chart.scales.x;
+                const lines = [
+                    { val: r1Val, color: 'rgba(239,68,68,0.5)', label: 'R1 ' + r1Val.toLocaleString() },
+                    { val: pivotVal, color: 'rgba(59,130,246,0.5)', label: 'Pivot ' + pivotVal.toLocaleString() },
+                    { val: lvl46000, color: 'rgba(245,158,11,0.7)', label: '46,000 生死線' },
+                    { val: s1Val, color: 'rgba(16,185,129,0.4)', label: 'S1 ' + s1Val.toLocaleString() },
+                    { val: ma20Val, color: 'rgba(139,92,246,0.5)', label: 'MA20 ' + ma20Val.toLocaleString() },
+                ];
+                lines.forEach(line => {
+                    const y = yAxis.getPixelForValue(line.val);
+                    if (y < yAxis.top || y > yAxis.bottom) return;
+                    ctx.save();
+                    ctx.strokeStyle = line.color;
+                    ctx.lineWidth = 1;
+                    ctx.setLineDash([5, 5]);
+                    ctx.beginPath();
+                    ctx.moveTo(xAxis.left, y);
+                    ctx.lineTo(xAxis.right, y);
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+                    ctx.fillStyle = line.color;
+                    ctx.font = '10px Outfit';
+                    ctx.fillText(line.label, xAxis.right - 100, y - 3);
+                    ctx.restore();
+                });
+            }
+        };
+        Chart.register(plugin);
+    })();
+
+    function initDailyChart() {
+        const ctx = document.getElementById('dailyChart').getContext('2d');
+        dailyChartObj = new Chart(ctx, {
+            type: 'candlestick',
+            data: {
+                datasets: [{
+                    label: '台指期日K',
+                    data: dailyKbars,
+                    color: {
+                        up: 'rgba(239,68,68,0.9)',
+                        down: 'rgba(16,185,129,0.9)',
+                        unchanged: 'rgba(156,163,175,0.9)'
+                    },
+                    borderColor: {
+                        up: '#ef4444',
+                        down: '#10b981',
+                        unchanged: '#9ca3af'
+                    }
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: ctx => {
+                                const d = ctx.raw;
+                                return [`開: ${d.o.toLocaleString()}`, `高: ${d.h.toLocaleString()}`, `低: ${d.l.toLocaleString()}`, `收: ${d.c.toLocaleString()}`];
+                            }
+                        },
+                        backgroundColor: 'rgba(10,14,23,0.9)',
+                        borderColor: 'rgba(255,255,255,0.1)',
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'timeseries',
+                        ticks: { color: '#6b7280', font: { size: 10 }, maxTicksLimit: 12 },
+                        grid: { color: 'rgba(255,255,255,0.03)' }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#6b7280',
+                            font: { size: 10 },
+                            callback: v => v.toLocaleString()
+                        },
+                        grid: { color: 'rgba(255,255,255,0.04)' }
+                    }
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>
