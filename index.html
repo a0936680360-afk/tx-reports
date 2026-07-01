@@ -218,15 +218,15 @@
     <section class="metrics-grid fade-in">
         <div class="metric-card up">
             <div class="metric-label">
-                <span>台指期夜盤收盤 (07/01)</span>
+                <span>台指期早盤收盤 (07/01)</span>
                 <i data-lucide="trending-up" style="width:16px;height:16px;"></i>
             </div>
             <div class="metric-value">47,231</div>
-            <div class="metric-sub"><span>夜盤震幅 800 點</span></div>
+            <div class="metric-sub"><span>早盤震幅 800 點</span></div>
         </div>
         <div class="metric-card up">
             <div class="metric-label">
-                <span>夜盤最高</span>
+                <span>早盤最高</span>
                 <i data-lucide="arrow-up" style="width:16px;height:16px;color:var(--color-up);"></i>
             </div>
             <div class="metric-value trend-up">47,695</div>
@@ -234,7 +234,7 @@
         </div>
         <div class="metric-card down">
             <div class="metric-label">
-                <span>夜盤最低</span>
+                <span>早盤最低</span>
                 <i data-lucide="arrow-down" style="width:16px;height:16px;color:var(--color-down);"></i>
             </div>
             <div class="metric-value trend-down">46,895</div>
@@ -271,7 +271,7 @@
                     <span>台指期技術走勢圖</span>
                 </div>
                 <div class="chart-tabs">
-                    <button class="chart-tab active" onclick="switchChart('real')">夜盤折線</button>
+                    <button class="chart-tab active" onclick="switchChart('real')">早盤折線</button>
                     <button class="chart-tab" onclick="switchChart('fallback')">日K走勢</button>
                 </div>
             </div>
@@ -557,8 +557,8 @@
                 const lines = [
                     { val: r1Val,    color: 'rgba(239,68,68,0.5)',   label: 'R1 ' + r1Val.toLocaleString() },
                     { val: pivotVal, color: 'rgba(59,130,246,0.5)',  label: 'Pivot ' + pivotVal.toLocaleString() },
-                    { val: nightHigh,color: 'rgba(239,68,68,0.4)',   label: '夜盤高 ' + nightHigh.toLocaleString() },
-                    { val: nightLow, color: 'rgba(16,185,129,0.4)',  label: '夜盤低 ' + nightLow.toLocaleString() },
+                    { val: nightHigh,color: 'rgba(239,68,68,0.4)',   label: '早盤高 ' + nightHigh.toLocaleString() },
+                    { val: nightLow, color: 'rgba(16,185,129,0.4)',  label: '早盤低 ' + nightLow.toLocaleString() },
                     { val: s1Val,    color: 'rgba(16,185,129,0.5)',  label: 'S1 ' + s1Val.toLocaleString() },
                     { val: ma20Val,  color: 'rgba(139,92,246,0.5)', label: 'MA20 ' + ma20Val.toLocaleString() },
                 ];
