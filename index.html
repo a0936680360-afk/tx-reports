@@ -2,8 +2,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>台指期交易決策與分析儀表板 - 2026-07-03 早盤預測</title>
-    <meta name="description" content="台指期 2026-07-03 早盤預測儀表板，含夜盤OHLC、Pivot Point、重大新聞焦點與操作策略。">
+    <title>台指期交易決策與分析儀表板 - 2026-07-02 夜盤預測</title>
+    <meta name="description" content="台指期 2026-07-02 夜盤預測儀表板，含夜盤OHLC、Pivot Point、重大新聞焦點與操作策略。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -208,9 +208,9 @@
         </div>
         <div class="status-badge">
             <span class="status-dot"></span>
-            <span style="font-weight:600;">7/3 早盤預測中</span>
+            <span style="font-weight:600;">7/2 夜盤預測中</span>
             <span style="color:var(--text-muted);">|</span>
-            <span style="font-family:'Outfit';font-size:13px;">最後更新: 2026-07-03 07:45:00</span>
+            <span style="font-family:'Outfit';font-size:13px;">最後更新: 2026-07-02 15:30:00</span>
         </div>
     </header>
 
@@ -218,15 +218,15 @@
     <section class="metrics-grid fade-in">
         <div class="metric-card up">
             <div class="metric-label">
-                <span>台指期夜盤收盤 (07/02)</span>
+                <span>台指期早盤收盤 (07/02)</span>
                 <i data-lucide="trending-up" style="width:16px;height:16px;"></i>
             </div>
             <div class="metric-value">45,668</div>
-            <div class="metric-sub"><span>夜盤震幅 1,952 點</span></div>
+            <div class="metric-sub"><span>早盤震幅 1,952 點</span></div>
         </div>
         <div class="metric-card up">
             <div class="metric-label">
-                <span>夜盤最高</span>
+                <span>早盤最高</span>
                 <i data-lucide="arrow-up" style="width:16px;height:16px;color:var(--color-up);"></i>
             </div>
             <div class="metric-value trend-up">47,223</div>
@@ -234,7 +234,7 @@
         </div>
         <div class="metric-card down">
             <div class="metric-label">
-                <span>夜盤最低</span>
+                <span>早盤最低</span>
                 <i data-lucide="arrow-down" style="width:16px;height:16px;color:var(--color-down);"></i>
             </div>
             <div class="metric-value trend-down">45,271</div>
@@ -271,7 +271,7 @@
                     <span>台指期技術走勢圖</span>
                 </div>
                 <div class="chart-tabs">
-                    <button class="chart-tab active" onclick="switchChart('real')">夜盤折線</button>
+                    <button class="chart-tab active" onclick="switchChart('real')">早盤折線</button>
                     <button class="chart-tab" onclick="switchChart('fallback')">日K走勢</button>
                 </div>
             </div>
@@ -290,22 +290,22 @@
                 <div class="gauge-container">
                     <div class="gauge-track"></div>
                     <div class="gauge-fill" id="gauge-fill"></div>
-                    <div class="gauge-value" id="gauge-val">45%</div>
+                    <div class="gauge-value" id="gauge-val">40%</div>
                 </div>
-                <div class="sentiment-text">逆價差 938 點，道瓊創高與費半暴跌的多空拉鋸</div>
-                <p style="font-size:12px;color:var(--text-muted);line-height:1.4;padding:0 10px;">非農疲軟使降息預期升溫，道瓊創新高但費半重挫 5.44%。台指夜盤最低殺至 45,271 後反彈收在 45,668，期現貨呈現極端逆價差。預期早盤多空於 Pivot 45,763 附近激烈震盪。</p>
+                <div class="sentiment-text">日K帶長下影，多空在 46,000 大關博弈</div>
+                <p style="font-size:12px;color:var(--text-muted);line-height:1.4;padding:0 10px;">早盤跳空開低後強勢反彈收復大半失土，日K收出帶 826 點下影線的錘子線；然而夜盤開盤再度下探 46,000 下方，顯示高檔套牢壓力仍重，震盪加劇。</p>
                 <div class="indicator-list">
                     <div class="indicator-row">
-                        <span class="indicator-name"><i data-lucide="minus" style="width:14px;"></i>美股分化</span>
-                        <span class="indicator-status status-neutral">道瓊新高/費半暴跌</span>
+                        <span class="indicator-name"><i data-lucide="trending-up" style="width:14px;"></i>日K型態</span>
+                        <span class="indicator-status status-up">錘子線(長下影)</span>
                     </div>
                     <div class="indicator-row">
-                        <span class="indicator-name"><i data-lucide="alert-triangle" style="width:14px;"></i>極端價差</span>
-                        <span class="indicator-status status-warn">逆價差 938 點</span>
+                        <span class="indicator-name"><i data-lucide="minus" style="width:14px;"></i>均線支撐</span>
+                        <span class="indicator-status status-neutral">回測 MA20 有守</span>
                     </div>
                     <div class="indicator-row">
-                        <span class="indicator-name"><i data-lucide="trending-down" style="width:14px;"></i>籌碼狀態</span>
-                        <span class="indicator-status status-down">外資淨空單維持高位</span>
+                        <span class="indicator-name"><i data-lucide="trending-down" style="width:14px;"></i>期現價差</span>
+                        <span class="indicator-status status-down">夜盤逆價差擴大</span>
                     </div></div>
             </div>
         </div>
@@ -315,7 +315,7 @@
     <section class="glass-panel review-panel fade-in" style="background:rgba(18,26,41,0.45);">
         <div class="section-title">
             <i data-lucide="swords" style="color:var(--color-accent);"></i>
-            <span>7/3 早盤操作策略規劃</span>
+            <span>7/2 夜盤操作策略規劃</span>
         </div>
         <div class="strategy-section">
             <div class="strategy-card buy-side">
@@ -323,36 +323,36 @@
                 <div class="strategy-levels">
                     <div class="level-row">
                         <span class="level-label">進場區間</span>
-                        <span class="level-price">45,400 ~ 45,550</span>
+                        <span class="level-price">45,750 ~ 45,850</span>
                     </div>
                     <div class="level-row">
                         <span class="level-label">停利目標</span>
-                        <span class="level-price">45,850 / 46,000</span>
+                        <span class="level-price">46,100 / 46,250</span>
                     </div>
                     <div class="level-row">
                         <span class="level-label" style="color:var(--text-muted);">停損防守</span>
-                        <span class="level-price" style="color:var(--text-secondary);">跌破 45,250</span>
+                        <span class="level-price" style="color:var(--text-secondary);">跌破 45,650</span>
                     </div>
                 </div>
-                <p class="strategy-desc"><strong>執行邏輯：</strong>目前期現貨逆價差達近 938 點極端值，若開低回測夜盤低點 45,271 附近有撐，可進場博逆價差收斂與短線反彈。</p>
+                <p class="strategy-desc"><strong>執行邏輯：</strong>若夜盤回測今日早盤低點（46,466）及日K前低 45,780 附近有撐，可短多搶波段逆價差收斂反彈。</p>
             </div>
             <div class="strategy-card sell-side">
                 <span class="strategy-badge">方案 B（反彈高空）</span>
                 <div class="strategy-levels">
                     <div class="level-row">
                         <span class="level-label">進場區間</span>
-                        <span class="level-price">46,000 ~ 46,150</span>
+                        <span class="level-price">46,300 ~ 46,400</span>
                     </div>
                     <div class="level-row">
                         <span class="level-label">停利目標</span>
-                        <span class="level-price">45,700 / 45,500</span>
+                        <span class="level-price">45,950 / 45,800</span>
                     </div>
                     <div class="level-row">
                         <span class="level-label" style="color:var(--text-muted);">停損防守</span>
-                        <span class="level-price" style="color:var(--text-secondary);">突破 46,300</span>
+                        <span class="level-price" style="color:var(--text-secondary);">突破 46,500</span>
                     </div>
                 </div>
-                <p class="strategy-desc"><strong>執行邏輯：</strong>若早盤因道瓊創高與逆價差收斂強彈至 46,000 關卡或 R1 附近，因半導體賣壓仍重，可順勢偏空操作。</p>
+                <p class="strategy-desc"><strong>執行邏輯：</strong>若美股開盤後反彈遇今日現貨收盤價（46,606）及夜盤 Pivot（46,311）附近遇壓，可順勢偏空操作。</p>
             </div>
         </div>
     </section>
@@ -361,7 +361,7 @@
     <section class="glass-panel levels-table-card fade-in">
         <div class="section-title">
             <i data-lucide="key-round" style="color:var(--color-accent);"></i>
-            <span>7/3 關鍵多空位對照</span>
+            <span>7/2 關鍵多空位對照</span>
         </div>
         <table class="levels-table">
             <thead>
@@ -407,23 +407,23 @@
             
         <div class="news-card bearish">
             <div class="news-badge">🔴 利空</div>
-            <div class="news-title">費城半導體指數單日重挫 5.44%，台積電 ADR 持續走弱</div>
+            <div class="news-title">費半指數重挫逾 6%，美光重挫 10.6%</div>
             <div class="news-impact">半導體股面臨劇烈獲利了結與補跌賣壓，壓制電子權值股走勢。</div>
-            <div class="news-desc">AI 與晶片板塊持續遭到拋售，特斯拉也重挫 7.5%。台股半導體與電子權值股今日將面臨沉重賣壓。</div>
+            <div class="news-desc">在上半年暴漲後，晶片股普遍遭遇技術性修正，英特爾大跌超 9%，台積電 ADR 跌近 7%。</div>
             <div class="news-history">📚 歷史先例：上次費半跌超 5% 時，台指期開盤通常跳空開低 -1.5% 至 -2.5%。</div>
         </div>
         <div class="news-card bullish">
             <div class="news-badge">🟢 利多</div>
-            <div class="news-title">美國 6 月非農僅增 5.7 萬人遠低於預期，道瓊大漲創歷史新高</div>
-            <div class="news-impact">就業疲軟提振聯準會降息機率，道瓊指數大漲 594 點（+1.14%）創高。</div>
-            <div class="news-desc">市場對利率下行的預期升溫，美股非科技板塊表現強勁，有利於台股金融與傳產族群撐盤。</div>
+            <div class="news-title">Meta 逆勢大漲 8.8%，切入算力出租與 AI 雲端市場</div>
+            <div class="news-impact">為美股科技股板塊提供防禦支撐，減緩整體指數跌幅。</div>
+            <div class="news-desc">Meta 利用閒置 AI 算力出租，激勵股價暴漲並撐住那斯達克及標普 500 指數。</div>
             
         </div>
         <div class="news-card neutral">
             <div class="news-badge">🔵 中性</div>
-            <div class="news-title">今晚（7/3）美國獨立紀念日假期美股休市</div>
-            <div class="news-impact">今日早盤後期及下午夜盤，市場交投預期將因缺乏美股指引而趨於觀望。</div>
-            <div class="news-desc">今晚美股因國慶日假期休市，市場在重大數據公佈後，預期今日下半場流動性將有所萎縮。</div>
+            <div class="news-title">聯準會華許言論保守，關注明晚非農就業數據</div>
+            <div class="news-impact">市場觀望明晚非農就業報告，今晚夜盤交投預計震盪並偏向謹慎。</div>
+            <div class="news-desc">華許重申 2% 通膨目標，並未給出明確降息承諾，加上美國 7/4 獨立紀念日週五休市，市場提前觀望。</div>
             
         </div>
         </div>
@@ -432,9 +432,9 @@
             <span class="news-tone tone-neutral">今日新聞基調：中性混雜</span>
             <span class="news-risk">
                 <i data-lucide="alert-triangle" style="width:14px;"></i>
-                最大風險：費半連兩日重挫引發電子股多殺多賣壓，測試夜盤低點 45,271 支撐
+                最大風險：美股科技股今晚未能止跌，晶片股若持續遭拋售將摜破 45,800 支撐
             </span>
-            <span class="news-vs-expect">市場預期 vs 實際：美國 6 月非農就業僅 5.7 萬人（預期 11 萬人，大幅不及預期）</span>
+            <span class="news-vs-expect">市場預期 vs 實際：等待明晚美國 6 月非農就業報告</span>
         </div>
     </section>
 
@@ -442,21 +442,21 @@
     <section class="glass-panel review-panel fade-in">
         <div class="section-title">
             <i data-lucide="clipboard-check" style="color:var(--color-accent);"></i>
-            <span>2026/07/03 早盤回顧與檢討</span>
+            <span>2026/07/02 早盤回顧與檢討</span>
         </div>
         <div class="review-grid">
             <div style="display:flex;flex-direction:column;gap:12px;">
                 <div class="indicator-row" style="padding:12px;">
                     <span style="font-size:13px;">實際走勢</span>
-                    <span style="font-weight:700;font-family:'Outfit';">[ 待早盤收盤後填寫 ]</span>
+                    <span style="font-weight:700;font-family:'Outfit';">開低震盪走高，拉回幅度符合預期但反彈力道極強</span>
                 </div>
                 <div class="indicator-row" style="padding:12px;">
                     <span style="font-size:13px;">實際波動範圍</span>
-                    <span style="font-weight:700;font-family:'Outfit';">最低 [ ] 至 最高 [ ]</span>
+                    <span style="font-weight:700;font-family:'Outfit';">最低 46,466 至 最高 46,987</span>
                 </div>
                 <div class="indicator-row" style="padding:12px;">
                     <span style="font-size:13px;">方向符合度</span>
-                    <span class="indicator-status status-neutral">待判定</span>
+                    <span class="indicator-status status-neutral">部分符合</span>
                 </div>
             </div>
             <div class="review-notes">
@@ -464,7 +464,19 @@
                 <div class="note-item">
                     <div class="note-title">
                         <i data-lucide="edit-3" style="width:16px;height:16px;color:var(--color-warning);"></i>
-                        <span>待早盤收盤後填寫。</span>
+                        <span>【盤面特徵】：早盤受美股大跌跳空低開在 46,715，隨即震盪下探，最低回測至 46,466 後獲得強大低接買盤（回測 MA20 支撐 45,664），盤中一路震盪拉高，最高衝至 46,987，成功收復部分跌幅。</span>
+                    </div>
+                </div>
+                <div class="note-item">
+                    <div class="note-title">
+                        <i data-lucide="edit-3" style="width:16px;height:16px;color:var(--color-warning);"></i>
+                        <span>【策略檢討】：空單方案進場預設為 46,600 ~ 46,700，防守設 46,850。今日早盤因反彈力道極強，衝破 46,850 觸發空單止損。未來在市場波動極大、逆價差達 600 點以上時，逢高做空應更加謹慎，防守點需根據早盤現貨開盤後的表現適度放寬。</span>
+                    </div>
+                </div>
+                <div class="note-item">
+                    <div class="note-title">
+                        <i data-lucide="edit-3" style="width:16px;height:16px;color:var(--color-warning);"></i>
+                        <span>【逆價差修復】：早盤現貨跳空開低後，台指期逆價差大幅收斂，吸引大量低接與外資空單回補買盤，這也正是期指早盤回測 46,466 後能強勢反彈近 500 點的核心邏輯。</span>
                     </div>
                 </div>
             </div>
@@ -476,7 +488,7 @@
 <script>
     try { lucide.createIcons(); } catch(e) { console.warn('Lucide icons failed', e); }
 
-    const sentimentPct = 45;
+    const sentimentPct = 40;
     const angle = -45 + (sentimentPct * 1.8);
     document.getElementById('gauge-fill').style.transform = `rotate(${angle}deg)`;
 
@@ -565,8 +577,8 @@
                 const lines = [
                     { val: r1Val,    color: 'rgba(239,68,68,0.5)',   label: 'R1 ' + r1Val.toLocaleString() },
                     { val: pivotVal, color: 'rgba(59,130,246,0.5)',  label: 'Pivot ' + pivotVal.toLocaleString() },
-                    { val: nightHigh,color: 'rgba(239,68,68,0.4)',   label: '夜盤高 ' + nightHigh.toLocaleString() },
-                    { val: nightLow, color: 'rgba(16,185,129,0.4)',  label: '夜盤低 ' + nightLow.toLocaleString() },
+                    { val: nightHigh,color: 'rgba(239,68,68,0.4)',   label: '早盤高 ' + nightHigh.toLocaleString() },
+                    { val: nightLow, color: 'rgba(16,185,129,0.4)',  label: '早盤低 ' + nightLow.toLocaleString() },
                     { val: s1Val,    color: 'rgba(16,185,129,0.5)',  label: 'S1 ' + s1Val.toLocaleString() },
                     { val: ma20Val,  color: 'rgba(139,92,246,0.5)', label: 'MA20 ' + ma20Val.toLocaleString() },
                 ];
