@@ -578,21 +578,28 @@
         // 2. 日K走勢圖
         const ctxDaily = document.getElementById('dailyChart').getContext('2d');
         dailyChart = new Chart(ctxDaily, {
-            type: 'line',
+            type: 'candlestick',
             data: {
                 datasets: [
                     {
-                        label: '收盤價',
-                        data: dailyKBars.map(d => ({ x: d.x, y: d.c })),
-                        borderColor: '#a5b4fc',
-                        borderWidth: 2,
-                        pointRadius: 1,
-                        fill: false
+                        label: '日K',
+                        data: dailyKBars,
+                        color: {
+                            up: '#ef4444',
+                            down: '#10b981',
+                            unchanged: '#9ca3af'
+                        },
+                        borderColor: {
+                            up: '#ef4444',
+                            down: '#10b981',
+                            unchanged: '#9ca3af'
+                        }
                     },
                     {
                         label: 'MA20',
+                        type: 'line',
                         data: ma20Series,
-                        borderColor: '#ef4444',
+                        borderColor: '#3b82f6',
                         borderWidth: 1.5,
                         pointRadius: 0,
                         fill: false
